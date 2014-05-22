@@ -10,9 +10,9 @@ Vagrant
 
 Download und Installation findet man auf der offiziellen Website [1].
 
-Nach der Installation muss man die Box "ubuntu/trusty64" hinzufügen.
+Nach der Installation muss man die Box "hashicorp/precise32" hinzufügen.
 
-$ vagrant box add ubuntu/trusty64
+$ vagrant box add hashicorp/precise32
 
 Danach kann man das System einfach mit vagrant up starten.
 
