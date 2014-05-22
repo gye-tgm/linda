@@ -4,8 +4,8 @@ apt-get update
 
 # Apache, PHP5 and Yii Framework
 apt-get install -y apache2
-rm -rf /var/www/
-ln -fs /vagrant /var/www/
+rm -rf /var/www
+ln -fs /vagrant /var/www
 
 apt-get install -y php5
 
