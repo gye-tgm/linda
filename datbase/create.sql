@@ -1,12 +1,12 @@
 -- MySQL CREATE Script for Linda
 
-DROP DATABASE Linda IF EXISTS;
+DROP DATABASE IF EXISTS Linda;
 CREATE DATABASE Linda;
 USE Linda;
 
 SET foreign_key_checks = 0;
 
-GRANT ALL PRIVILEGES ON Linda.*  TO 'Linda'@'%' IDENTIFIED BY 'passwd'
+GRANT ALL PRIVILEGES ON Linda.*  TO 'Linda'@'%' IDENTIFIED BY 'passwd';
 
 CREATE TABLE User (
 id INTEGER NOT NULL AUTO_INCREMENT,
