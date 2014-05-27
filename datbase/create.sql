@@ -1,1 +1,86 @@
--- MySQL CREATE Script for Linda 
+-- MySQL CREATE Script for Linda
+
+DROP DATABASE Linda IF EXISTS;
+CREATE DATABASE Linda;
+USE Linda;
+
+SET foreign_key_checks = 0;
+
+GRANT ALL PRIVILEGES ON Linda.*  TO 'Linda'@'%' IDENTIFIED BY 'passwd'
+
+CREATE TABLE User (
+id INTEGER NOT NULL AUTO_INCREMENT,
+username VARCHAR(255) UNIQUE,
+password VARCHAR(20),
+PRIMARY KEY(id)
+)ENGINE=InnoDB;
+
+CREATE TABLE Event (
+id INTEGER NOT NULL AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
+ort VARCHAR(255),
+beschreibung VARCHAR(8192),
+organisatorid INTEGER NOT NULL,
+PRIMARY KEY(id),
+FOREIGN KEY(organisatorid) REFERENCES User (id)
+)ENGINE=InnoDB;
+
+CREATE TABLE Kommentar(
+id INTEGER NOT NULL AUTO_INCREMENT,
+text VARCHAR(255) NOT NULL,
+zeit DATE NOT NULL,
+userid INTEGER NOT NULL,
+eventid INTEGER NOT NULL,
+PRIMARY KEY(id),
+FOREIGN KEY(userid) REFERENCES User (id),
+FOREIGN KEY(eventid) REFERENCES Event (id)
+)ENGINE=InnoDB;
+
+CREATE TABLE User_Event (
+userid INTEGER NOT NULL,
+eventid INTEGER NOT NULL,
+signedup TINYINT(1),
+PRIMARY KEY (userid, eventid),
+FOREIGN KEY(userid) REFERENCES User (id),
+FOREIGN KEY(eventid) REFERENCES Event (id)
+)ENGINE=InnoDB;
+
+CREATE TABLE Notification (
+id INTEGER NOT NULL AUTO_INCREMENT,
+eventid INTEGER,
+text VARCHAR(255),
+zeit  TIMESTAMP,
+gelesen TINYINT(1),
+PRIMARY KEY(id),
+FOREIGN KEY (eventid) REFERENCES Event(id)
+)ENGINE=InnoDB;
+
+CREATE TABLE Termin(
+id INTEGER NOT NULL AUTO_INCREMENT,
+eventid INTEGER NOT NULL,
+zeit DATETIME NOT NULL,
+PRIMARY KEY(id),
+FOREIGN KEY (eventid) REFERENCES Event(id)
+)ENGINE=InnoDB;
+
+CREATE TABLE TerminVereinbarung (
+id INTEGER NOT NULL AUTO_INCREMENT,
+terminid INTEGER NOT NULL,
+userid INTEGER NOT NULL,
+eventid INTEGER NOT NULL,
+PRIMARY KEY(id),
+FOREIGN KEY(eventid) REFERENCES Event(id),
+FOREIGN KEY(terminid) REFERENCES Termin(id),
+FOREIGN KEY(userid) REFERENCES User(id)
+)ENGINE=InnoDB;
+
+CREATE TABLE Notification_User(
+id INTEGER NOT NULL AUTO_INCREMENT,
+notificationid INTEGER NOT NULL,
+userid INTEGER NOT NULL,
+PRIMARY KEY(id),
+FOREIGN KEY(notificationid) REFERENCES Notification (id),
+FOREIGN KEY(userid) REFERENCES User (id)
+)ENGINE=InnoDB;
+
+SET foreign_key_checks = 1; 
