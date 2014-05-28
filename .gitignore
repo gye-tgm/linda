@@ -8,3 +8,6 @@ themes/classic/views/
 
 # Vagrant only
 .vagrant/*
+
+# VIM swap files
+*.swp
