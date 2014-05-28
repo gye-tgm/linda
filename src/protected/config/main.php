@@ -58,6 +58,13 @@ return array(
 			'password' => 'passwd',
 			'charset' => 'utf8',
 		),
+		// Used for the authManager component, for more: http://www.yiiframework.com/doc/guide/1.1/en/topics.auth
+		// We can access authManager with Yii::app()->authManager now.
+		'authManager'=>array(
+			'class'=>'CDbAuthManager',
+			'connectionID'=>'db',
+		),
+
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
