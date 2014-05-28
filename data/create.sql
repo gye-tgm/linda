@@ -48,9 +48,8 @@ FOREIGN KEY(eventid) REFERENCES Event (id)
 CREATE TABLE Notification (
 id INTEGER NOT NULL AUTO_INCREMENT,
 eventid INTEGER,
-text VARCHAR(255),
+typ INTEGER,
 zeit  TIMESTAMP,
-gelesen TINYINT(1),
 PRIMARY KEY(id),
 FOREIGN KEY (eventid) REFERENCES Event(id)
 )ENGINE=InnoDB;
@@ -78,6 +77,7 @@ CREATE TABLE Notification_User(
 id INTEGER NOT NULL AUTO_INCREMENT,
 notificationid INTEGER NOT NULL,
 userid INTEGER NOT NULL,
+gelesen TINYINT(1),
 PRIMARY KEY(id),
 FOREIGN KEY(notificationid) REFERENCES Notification (id),
 FOREIGN KEY(userid) REFERENCES User (id)

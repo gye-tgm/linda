@@ -17,4 +17,4 @@ mv yii-1.1.14.f0fee9 yii
 chown -R www-data yii
 chgrp -R www-data yii
 
-mysql -u root < /vagrant/database/create.sql 
+mysql -u root < /vagrant/data/all.sql 
