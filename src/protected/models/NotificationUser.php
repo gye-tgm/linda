@@ -7,6 +7,7 @@
  * @property integer $id
  * @property integer $notificationid
  * @property integer $userid
+ * @property integer $gelesen
  *
  * The followings are the available model relations:
  * @property Notification $notification
@@ -31,10 +32,10 @@ class NotificationUser extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('notificationid, userid', 'required'),
-			array('notificationid, userid', 'numerical', 'integerOnly'=>true),
+			array('notificationid, userid, gelesen', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, notificationid, userid', 'safe', 'on'=>'search'),
+			array('id, notificationid, userid, gelesen', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,6 +61,7 @@ class NotificationUser extends CActiveRecord
 			'id' => 'ID',
 			'notificationid' => 'Notificationid',
 			'userid' => 'Userid',
+			'gelesen' => 'Gelesen',
 		);
 	}
 
@@ -84,6 +86,7 @@ class NotificationUser extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('notificationid',$this->notificationid);
 		$criteria->compare('userid',$this->userid);
+		$criteria->compare('gelesen',$this->gelesen);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

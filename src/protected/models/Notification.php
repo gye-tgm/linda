@@ -6,9 +6,8 @@
  * The followings are the available columns in table 'Notification':
  * @property integer $id
  * @property integer $eventid
- * @property string $text
+ * @property integer $typ
  * @property string $zeit
- * @property integer $gelesen
  *
  * The followings are the available model relations:
  * @property Event $event
@@ -33,11 +32,10 @@ class Notification extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('zeit', 'required'),
-			array('eventid, gelesen', 'numerical', 'integerOnly'=>true),
-			array('text', 'length', 'max'=>255),
+			array('eventid, typ', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, eventid, text, zeit, gelesen', 'safe', 'on'=>'search'),
+			array('id, eventid, typ, zeit', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,9 +60,8 @@ class Notification extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'eventid' => 'Eventid',
-			'text' => 'Text',
+			'typ' => 'Typ',
 			'zeit' => 'Zeit',
-			'gelesen' => 'Gelesen',
 		);
 	}
 
@@ -88,9 +85,8 @@ class Notification extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('eventid',$this->eventid);
-		$criteria->compare('text',$this->text,true);
+		$criteria->compare('typ',$this->typ);
 		$criteria->compare('zeit',$this->zeit,true);
-		$criteria->compare('gelesen',$this->gelesen);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

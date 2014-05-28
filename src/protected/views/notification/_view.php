@@ -13,16 +13,12 @@
 	<?php echo CHtml::encode($data->eventid); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('text')); ?>:</b>
-	<?php echo CHtml::encode($data->text); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('typ')); ?>:</b>
+	<?php echo CHtml::encode($data->typ); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('zeit')); ?>:</b>
 	<?php echo CHtml::encode($data->zeit); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('gelesen')); ?>:</b>
-	<?php echo CHtml::encode($data->gelesen); ?>
 	<br />
 
 

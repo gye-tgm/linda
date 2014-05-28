@@ -23,8 +23,7 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'eventid',
-		'text',
+		'typ',
 		'zeit',
-		'gelesen',
 	),
 )); ?>

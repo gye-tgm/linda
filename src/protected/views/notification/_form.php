@@ -26,21 +26,15 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'text'); ?>
-		<?php echo $form->textField($model,'text',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'text'); ?>
+		<?php echo $form->labelEx($model,'typ'); ?>
+		<?php echo $form->textField($model,'typ'); ?>
+		<?php echo $form->error($model,'typ'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'zeit'); ?>
 		<?php echo $form->textField($model,'zeit'); ?>
 		<?php echo $form->error($model,'zeit'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'gelesen'); ?>
-		<?php echo $form->textField($model,'gelesen'); ?>
-		<?php echo $form->error($model,'gelesen'); ?>
 	</div>
 
 	<div class="row buttons">
