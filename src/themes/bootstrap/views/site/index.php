@@ -22,11 +22,16 @@ $this->pageTitle=Yii::app()->name;
 	We would like to thank our teachers for helping us to accomplish the journey to success. </br>	
 </p>
 
-Fueled by </br> 
+
+<p align="center">
+<b>Fueled by</b> </br> 
 <a href="http://www.yiiframework.com">
 	<img src="images/yii_framework.jpg"/>
 </a>
 <a href="http://www.tgm.ac.at">
 	<img src="images/tgm.jpg"/>
 </a>
-
+<a href="http://www.getbootstrap.com">
+	<img src="images/bootstrap.jpg"/>
+</a>
+</p>
