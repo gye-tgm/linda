@@ -6,13 +6,14 @@
  * The followings are the available columns in table 'User':
  * @property integer $id
  * @property string $username
+ * @property string $roles
  * @property string $password
  *
  * The followings are the available model relations:
+ * @property AppointmentArrangement[] $appointmentArrangements
+ * @property Comment[] $comments
  * @property Event[] $events
- * @property Kommentar[] $kommentars
  * @property NotificationUser[] $notificationUsers
- * @property TerminVereinbarung[] $terminVereinbarungs
  */
 class User extends CActiveRecord
 {
@@ -32,11 +33,11 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username', 'length', 'max'=>255),
+			array('username, roles', 'length', 'max'=>255),
 			array('password', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, password', 'safe', 'on'=>'search'),
+			array('id, username, roles, password', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,10 +49,10 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'appointmentArrangements' => array(self::HAS_MANY, 'AppointmentArrangement', 'userid'),
+			'comments' => array(self::HAS_MANY, 'Comment', 'userid'),
 			'events' => array(self::MANY_MANY, 'Event', 'User_Event(userid, eventid)'),
-			'kommentars' => array(self::HAS_MANY, 'Kommentar', 'userid'),
 			'notificationUsers' => array(self::HAS_MANY, 'NotificationUser', 'userid'),
-			'terminVereinbarungs' => array(self::HAS_MANY, 'TerminVereinbarung', 'userid'),
 		);
 	}
 
@@ -63,6 +64,7 @@ class User extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'username' => 'Username',
+			'roles' => 'Roles',
 			'password' => 'Password',
 		);
 	}
@@ -87,6 +89,7 @@ class User extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('username',$this->username,true);
+		$criteria->compare('roles',$this->roles,true);
 		$criteria->compare('password',$this->password,true);
 
 		return new CActiveDataProvider($this, array(

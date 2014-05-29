@@ -6,16 +6,16 @@
  * The followings are the available columns in table 'Event':
  * @property integer $id
  * @property string $name
- * @property string $ort
- * @property string $beschreibung
- * @property integer $organisatorid
+ * @property string $location
+ * @property string $description
+ * @property integer $hostid
  *
  * The followings are the available model relations:
- * @property User $organisator
- * @property Kommentar[] $kommentars
+ * @property Appointment[] $appointments
+ * @property AppointmentArrangement[] $appointmentArrangements
+ * @property Comment[] $comments
+ * @property User $host
  * @property Notification[] $notifications
- * @property Termin[] $termins
- * @property TerminVereinbarung[] $terminVereinbarungs
  * @property User[] $users
  */
 class Event extends CActiveRecord
@@ -36,13 +36,13 @@ class Event extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, organisatorid', 'required'),
-			array('organisatorid', 'numerical', 'integerOnly'=>true),
-			array('name, ort', 'length', 'max'=>255),
-			array('beschreibung', 'length', 'max'=>8192),
+			array('name, hostid', 'required'),
+			array('hostid', 'numerical', 'integerOnly'=>true),
+			array('name, location', 'length', 'max'=>255),
+			array('description', 'length', 'max'=>8192),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, ort, beschreibung, organisatorid', 'safe', 'on'=>'search'),
+			array('id, name, location, description, hostid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,11 +54,11 @@ class Event extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'organisator' => array(self::BELONGS_TO, 'User', 'organisatorid'),
-			'kommentars' => array(self::HAS_MANY, 'Kommentar', 'eventid'),
+			'appointments' => array(self::HAS_MANY, 'Appointment', 'eventid'),
+			'appointmentArrangements' => array(self::HAS_MANY, 'AppointmentArrangement', 'eventid'),
+			'comments' => array(self::HAS_MANY, 'Comment', 'eventid'),
+			'host' => array(self::BELONGS_TO, 'User', 'hostid'),
 			'notifications' => array(self::HAS_MANY, 'Notification', 'eventid'),
-			'termins' => array(self::HAS_MANY, 'Termin', 'eventid'),
-			'terminVereinbarungs' => array(self::HAS_MANY, 'TerminVereinbarung', 'eventid'),
 			'users' => array(self::MANY_MANY, 'User', 'User_Event(eventid, userid)'),
 		);
 	}
@@ -71,9 +71,9 @@ class Event extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'ort' => 'Ort',
-			'beschreibung' => 'Beschreibung',
-			'organisatorid' => 'Organisatorid',
+			'location' => 'Location',
+			'description' => 'Description',
+			'hostid' => 'Hostid',
 		);
 	}
 
@@ -97,9 +97,9 @@ class Event extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('ort',$this->ort,true);
-		$criteria->compare('beschreibung',$this->beschreibung,true);
-		$criteria->compare('organisatorid',$this->organisatorid);
+		$criteria->compare('location',$this->location,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('hostid',$this->hostid);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

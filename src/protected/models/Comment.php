@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "TerminVereinbarung".
+ * This is the model class for table "Comment".
  *
- * The followings are the available columns in table 'TerminVereinbarung':
+ * The followings are the available columns in table 'Comment':
  * @property integer $id
- * @property integer $terminid
+ * @property string $text
+ * @property string $time
  * @property integer $userid
  * @property integer $eventid
  *
  * The followings are the available model relations:
- * @property Event $event
- * @property Termin $termin
  * @property User $user
+ * @property Event $event
  */
-class TerminVereinbarung extends CActiveRecord
+class Comment extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'TerminVereinbarung';
+		return 'Comment';
 	}
 
 	/**
@@ -32,11 +32,12 @@ class TerminVereinbarung extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('terminid, userid, eventid', 'required'),
-			array('terminid, userid, eventid', 'numerical', 'integerOnly'=>true),
+			array('text, time, userid, eventid', 'required'),
+			array('userid, eventid', 'numerical', 'integerOnly'=>true),
+			array('text', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, terminid, userid, eventid', 'safe', 'on'=>'search'),
+			array('id, text, time, userid, eventid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,9 +49,8 @@ class TerminVereinbarung extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'event' => array(self::BELONGS_TO, 'Event', 'eventid'),
-			'termin' => array(self::BELONGS_TO, 'Termin', 'terminid'),
 			'user' => array(self::BELONGS_TO, 'User', 'userid'),
+			'event' => array(self::BELONGS_TO, 'Event', 'eventid'),
 		);
 	}
 
@@ -61,7 +61,8 @@ class TerminVereinbarung extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'terminid' => 'Terminid',
+			'text' => 'Text',
+			'time' => 'Time',
 			'userid' => 'Userid',
 			'eventid' => 'Eventid',
 		);
@@ -86,7 +87,8 @@ class TerminVereinbarung extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('terminid',$this->terminid);
+		$criteria->compare('text',$this->text,true);
+		$criteria->compare('time',$this->time,true);
 		$criteria->compare('userid',$this->userid);
 		$criteria->compare('eventid',$this->eventid);
 
@@ -99,7 +101,7 @@ class TerminVereinbarung extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return TerminVereinbarung the static model class
+	 * @return Comment the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

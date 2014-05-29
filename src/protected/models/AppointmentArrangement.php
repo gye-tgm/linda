@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "Kommentar".
+ * This is the model class for table "AppointmentArrangement".
  *
- * The followings are the available columns in table 'Kommentar':
+ * The followings are the available columns in table 'AppointmentArrangement':
  * @property integer $id
- * @property string $text
- * @property string $zeit
+ * @property integer $terminid
  * @property integer $userid
  * @property integer $eventid
  *
  * The followings are the available model relations:
- * @property User $user
  * @property Event $event
+ * @property Appointment $termin
+ * @property User $user
  */
-class Kommentar extends CActiveRecord
+class AppointmentArrangement extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'Kommentar';
+		return 'AppointmentArrangement';
 	}
 
 	/**
@@ -32,12 +32,11 @@ class Kommentar extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('text, zeit, userid, eventid', 'required'),
-			array('userid, eventid', 'numerical', 'integerOnly'=>true),
-			array('text', 'length', 'max'=>255),
+			array('terminid, userid, eventid', 'required'),
+			array('terminid, userid, eventid', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, text, zeit, userid, eventid', 'safe', 'on'=>'search'),
+			array('id, terminid, userid, eventid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,8 +48,9 @@ class Kommentar extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'User', 'userid'),
 			'event' => array(self::BELONGS_TO, 'Event', 'eventid'),
+			'termin' => array(self::BELONGS_TO, 'Appointment', 'terminid'),
+			'user' => array(self::BELONGS_TO, 'User', 'userid'),
 		);
 	}
 
@@ -61,8 +61,7 @@ class Kommentar extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'text' => 'Text',
-			'zeit' => 'Zeit',
+			'terminid' => 'Terminid',
 			'userid' => 'Userid',
 			'eventid' => 'Eventid',
 		);
@@ -87,8 +86,7 @@ class Kommentar extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('text',$this->text,true);
-		$criteria->compare('zeit',$this->zeit,true);
+		$criteria->compare('terminid',$this->terminid);
 		$criteria->compare('userid',$this->userid);
 		$criteria->compare('eventid',$this->eventid);
 
@@ -101,7 +99,7 @@ class Kommentar extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Kommentar the static model class
+	 * @return AppointmentArrangement the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

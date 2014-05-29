@@ -6,8 +6,8 @@
  * The followings are the available columns in table 'Notification':
  * @property integer $id
  * @property integer $eventid
- * @property integer $typ
- * @property string $zeit
+ * @property integer $type
+ * @property string $time
  *
  * The followings are the available model relations:
  * @property Event $event
@@ -31,11 +31,11 @@ class Notification extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('zeit', 'required'),
-			array('eventid, typ', 'numerical', 'integerOnly'=>true),
+			array('time', 'required'),
+			array('eventid, type', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, eventid, typ, zeit', 'safe', 'on'=>'search'),
+			array('id, eventid, type, time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,8 +60,8 @@ class Notification extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'eventid' => 'Eventid',
-			'typ' => 'Typ',
-			'zeit' => 'Zeit',
+			'type' => 'Type',
+			'time' => 'Time',
 		);
 	}
 
@@ -85,8 +85,8 @@ class Notification extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('eventid',$this->eventid);
-		$criteria->compare('typ',$this->typ);
-		$criteria->compare('zeit',$this->zeit,true);
+		$criteria->compare('type',$this->type);
+		$criteria->compare('time',$this->time,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

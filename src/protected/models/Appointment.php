@@ -1,25 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "Termin".
+ * This is the model class for table "Appointment".
  *
- * The followings are the available columns in table 'Termin':
+ * The followings are the available columns in table 'Appointment':
  * @property integer $id
  * @property integer $eventid
- * @property string $zeit
+ * @property string $time
  *
  * The followings are the available model relations:
  * @property Event $event
- * @property TerminVereinbarung[] $terminVereinbarungs
+ * @property AppointmentArrangement[] $appointmentArrangements
  */
-class Termin extends CActiveRecord
+class Appointment extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'Termin';
+		return 'Appointment';
 	}
 
 	/**
@@ -30,11 +30,11 @@ class Termin extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('eventid, zeit', 'required'),
+			array('eventid, time', 'required'),
 			array('eventid', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, eventid, zeit', 'safe', 'on'=>'search'),
+			array('id, eventid, time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,7 +47,7 @@ class Termin extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'event' => array(self::BELONGS_TO, 'Event', 'eventid'),
-			'terminVereinbarungs' => array(self::HAS_MANY, 'TerminVereinbarung', 'terminid'),
+			'appointmentArrangements' => array(self::HAS_MANY, 'AppointmentArrangement', 'terminid'),
 		);
 	}
 
@@ -59,7 +59,7 @@ class Termin extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'eventid' => 'Eventid',
-			'zeit' => 'Zeit',
+			'time' => 'Time',
 		);
 	}
 
@@ -83,7 +83,7 @@ class Termin extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('eventid',$this->eventid);
-		$criteria->compare('zeit',$this->zeit,true);
+		$criteria->compare('time',$this->time,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -94,7 +94,7 @@ class Termin extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Termin the static model class
+	 * @return Appointment the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
