@@ -26,21 +26,21 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'ort'); ?>
-		<?php echo $form->textField($model,'ort',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'ort'); ?>
+		<?php echo $form->labelEx($model,'location'); ?>
+		<?php echo $form->textField($model,'location',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'location'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'beschreibung'); ?>
-		<?php echo $form->textField($model,'beschreibung',array('size'=>60,'maxlength'=>8192)); ?>
-		<?php echo $form->error($model,'beschreibung'); ?>
+		<?php echo $form->labelEx($model,'description'); ?>
+		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>8192)); ?>
+		<?php echo $form->error($model,'description'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'organisatorid'); ?>
-		<?php echo $form->textField($model,'organisatorid'); ?>
-		<?php echo $form->error($model,'organisatorid'); ?>
+		<?php echo $form->labelEx($model,'hostid'); ?>
+		<?php echo $form->textField($model,'hostid'); ?>
+		<?php echo $form->error($model,'hostid'); ?>
 	</div>
 
 	<div class="row buttons">

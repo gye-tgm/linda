@@ -23,8 +23,8 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'name',
-		'ort',
-		'beschreibung',
-		'organisatorid',
+		'location',
+		'description',
+		'hostid',
 	),
 )); ?>

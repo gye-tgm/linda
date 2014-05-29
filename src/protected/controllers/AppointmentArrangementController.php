@@ -1,6 +1,6 @@
 <?php
 
-class TerminVereinbarungController extends Controller
+class AppointmentArrangementController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,14 +62,14 @@ class TerminVereinbarungController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new TerminVereinbarung;
+		$model=new AppointmentArrangement;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['TerminVereinbarung']))
+		if(isset($_POST['AppointmentArrangement']))
 		{
-			$model->attributes=$_POST['TerminVereinbarung'];
+			$model->attributes=$_POST['AppointmentArrangement'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +91,9 @@ class TerminVereinbarungController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['TerminVereinbarung']))
+		if(isset($_POST['AppointmentArrangement']))
 		{
-			$model->attributes=$_POST['TerminVereinbarung'];
+			$model->attributes=$_POST['AppointmentArrangement'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,7 +122,7 @@ class TerminVereinbarungController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('TerminVereinbarung');
+		$dataProvider=new CActiveDataProvider('AppointmentArrangement');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class TerminVereinbarungController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new TerminVereinbarung('search');
+		$model=new AppointmentArrangement('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['TerminVereinbarung']))
-			$model->attributes=$_GET['TerminVereinbarung'];
+		if(isset($_GET['AppointmentArrangement']))
+			$model->attributes=$_GET['AppointmentArrangement'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class TerminVereinbarungController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return TerminVereinbarung the loaded model
+	 * @return AppointmentArrangement the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=TerminVereinbarung::model()->findByPk($id);
+		$model=AppointmentArrangement::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +160,11 @@ class TerminVereinbarungController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param TerminVereinbarung $model the model to be validated
+	 * @param AppointmentArrangement $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='termin-vereinbarung-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='appointment-arrangement-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

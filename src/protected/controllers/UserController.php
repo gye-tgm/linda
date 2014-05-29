@@ -19,6 +19,10 @@ class UserController extends Controller
 		);
 	}
 
+	public function actionInit(){
+		$auth=Yii::app()->authManager;
+		}
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -28,7 +32,7 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index', 'view', 'hostedEvents'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -170,4 +174,17 @@ class UserController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	/**
+	 * Lists all events hosted by the given user.
+	 */
+	public function actionHostedEvents($id){
+		$dataProvider = new CActiveDataProvider('Event', array(
+			'criteria' => array (
+				'condition'=>"hostid=$id",
+			),
+		));
+		$this->render('hevents', array('dataProvider' => $dataProvider));
+	}
+
 }

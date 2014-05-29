@@ -1,13 +1,13 @@
 <?php
-/* @var $this KommentarController */
-/* @var $model Kommentar */
+/* @var $this CommentController */
+/* @var $model Comment */
 /* @var $form CActiveForm */
 ?>
 
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'kommentar-form',
+	'id'=>'comment-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -26,9 +26,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'zeit'); ?>
-		<?php echo $form->textField($model,'zeit'); ?>
-		<?php echo $form->error($model,'zeit'); ?>
+		<?php echo $form->labelEx($model,'time'); ?>
+		<?php echo $form->textField($model,'time'); ?>
+		<?php echo $form->error($model,'time'); ?>
 	</div>
 
 	<div class="row">

@@ -1,6 +1,6 @@
 <?php
-/* @var $this KommentarController */
-/* @var $model Kommentar */
+/* @var $this CommentController */
+/* @var $model Comment */
 /* @var $form CActiveForm */
 ?>
 
@@ -22,8 +22,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'zeit'); ?>
-		<?php echo $form->textField($model,'zeit'); ?>
+		<?php echo $form->label($model,'time'); ?>
+		<?php echo $form->textField($model,'time'); ?>
 	</div>
 
 	<div class="row">

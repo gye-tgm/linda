@@ -1,6 +1,6 @@
 <?php
 
-class TerminController extends Controller
+class AppointmentController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,14 +62,14 @@ class TerminController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Termin;
+		$model=new Appointment;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Termin']))
+		if(isset($_POST['Appointment']))
 		{
-			$model->attributes=$_POST['Termin'];
+			$model->attributes=$_POST['Appointment'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +91,9 @@ class TerminController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Termin']))
+		if(isset($_POST['Appointment']))
 		{
-			$model->attributes=$_POST['Termin'];
+			$model->attributes=$_POST['Appointment'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,7 +122,7 @@ class TerminController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Termin');
+		$dataProvider=new CActiveDataProvider('Appointment');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class TerminController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Termin('search');
+		$model=new Appointment('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Termin']))
-			$model->attributes=$_GET['Termin'];
+		if(isset($_GET['Appointment']))
+			$model->attributes=$_GET['Appointment'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class TerminController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Termin the loaded model
+	 * @return Appointment the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Termin::model()->findByPk($id);
+		$model=Appointment::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +160,11 @@ class TerminController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Termin $model the model to be validated
+	 * @param Appointment $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='termin-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='appointment-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

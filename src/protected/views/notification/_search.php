@@ -22,13 +22,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'typ'); ?>
-		<?php echo $form->textField($model,'typ'); ?>
+		<?php echo $form->label($model,'type'); ?>
+		<?php echo $form->textField($model,'type'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'zeit'); ?>
-		<?php echo $form->textField($model,'zeit'); ?>
+		<?php echo $form->label($model,'time'); ?>
+		<?php echo $form->textField($model,'time'); ?>
 	</div>
 
 	<div class="row buttons">

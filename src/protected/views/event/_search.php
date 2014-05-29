@@ -22,18 +22,18 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'ort'); ?>
-		<?php echo $form->textField($model,'ort',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->label($model,'location'); ?>
+		<?php echo $form->textField($model,'location',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'beschreibung'); ?>
-		<?php echo $form->textField($model,'beschreibung',array('size'=>60,'maxlength'=>8192)); ?>
+		<?php echo $form->label($model,'description'); ?>
+		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>8192)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'organisatorid'); ?>
-		<?php echo $form->textField($model,'organisatorid'); ?>
+		<?php echo $form->label($model,'hostid'); ?>
+		<?php echo $form->textField($model,'hostid'); ?>
 	</div>
 
 	<div class="row buttons">

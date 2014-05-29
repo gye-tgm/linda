@@ -1,18 +1,18 @@
 <?php
-/* @var $this TerminController */
+/* @var $this AppointmentController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Termins',
+	'Appointments',
 );
 
 $this->menu=array(
-	array('label'=>'Create Termin', 'url'=>array('create')),
-	array('label'=>'Manage Termin', 'url'=>array('admin')),
+	array('label'=>'Create Appointment', 'url'=>array('create')),
+	array('label'=>'Manage Appointment', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Termins</h1>
+<h1>Appointments</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

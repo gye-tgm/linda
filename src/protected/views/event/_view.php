@@ -13,16 +13,16 @@
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('ort')); ?>:</b>
-	<?php echo CHtml::encode($data->ort); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('location')); ?>:</b>
+	<?php echo CHtml::encode($data->location); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('beschreibung')); ?>:</b>
-	<?php echo CHtml::encode($data->beschreibung); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
+	<?php echo CHtml::encode($data->description); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('organisatorid')); ?>:</b>
-	<?php echo CHtml::encode($data->organisatorid); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('hostid')); ?>:</b>
+	<?php echo CHtml::encode($data->hostid); ?>
 	<br />
 
 

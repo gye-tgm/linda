@@ -1,6 +1,6 @@
 <?php
-/* @var $this TerminController */
-/* @var $model Termin */
+/* @var $this AppointmentArrangementController */
+/* @var $model AppointmentArrangement */
 /* @var $form CActiveForm */
 ?>
 
@@ -17,13 +17,18 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'eventid'); ?>
-		<?php echo $form->textField($model,'eventid'); ?>
+		<?php echo $form->label($model,'terminid'); ?>
+		<?php echo $form->textField($model,'terminid'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'zeit'); ?>
-		<?php echo $form->textField($model,'zeit'); ?>
+		<?php echo $form->label($model,'userid'); ?>
+		<?php echo $form->textField($model,'userid'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'eventid'); ?>
+		<?php echo $form->textField($model,'eventid'); ?>
 	</div>
 
 	<div class="row buttons">

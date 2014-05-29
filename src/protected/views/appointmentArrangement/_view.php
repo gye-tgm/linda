@@ -1,6 +1,6 @@
 <?php
-/* @var $this KommentarController */
-/* @var $data Kommentar */
+/* @var $this AppointmentArrangementController */
+/* @var $data AppointmentArrangement */
 ?>
 
 <div class="view">
@@ -9,12 +9,8 @@
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('text')); ?>:</b>
-	<?php echo CHtml::encode($data->text); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('zeit')); ?>:</b>
-	<?php echo CHtml::encode($data->zeit); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('terminid')); ?>:</b>
+	<?php echo CHtml::encode($data->terminid); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userid')); ?>:</b>

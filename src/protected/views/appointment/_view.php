@@ -1,6 +1,6 @@
 <?php
-/* @var $this TerminController */
-/* @var $data Termin */
+/* @var $this AppointmentController */
+/* @var $data Appointment */
 ?>
 
 <div class="view">
@@ -13,8 +13,8 @@
 	<?php echo CHtml::encode($data->eventid); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('zeit')); ?>:</b>
-	<?php echo CHtml::encode($data->zeit); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('time')); ?>:</b>
+	<?php echo CHtml::encode($data->time); ?>
 	<br />
 
 

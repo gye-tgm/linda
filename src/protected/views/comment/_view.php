@@ -1,6 +1,6 @@
 <?php
-/* @var $this TerminVereinbarungController */
-/* @var $data TerminVereinbarung */
+/* @var $this CommentController */
+/* @var $data Comment */
 ?>
 
 <div class="view">
@@ -9,8 +9,12 @@
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('terminid')); ?>:</b>
-	<?php echo CHtml::encode($data->terminid); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('text')); ?>:</b>
+	<?php echo CHtml::encode($data->text); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('time')); ?>:</b>
+	<?php echo CHtml::encode($data->time); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userid')); ?>:</b>
