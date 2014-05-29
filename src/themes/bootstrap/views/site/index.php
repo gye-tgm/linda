@@ -20,13 +20,13 @@ $this->pageTitle=Yii::app()->name;
 
 <p>
 	We would like to thank our teachers for helping us to accomplish the journey to success. </br>	
-	Fueled by </br> 
-	<a href="http://www.yiiframework.com">
-		<img src="images/yii_framework.jpg"/>
-	</a>
-	<a href="http://www.tgm.ac.at">
-		<img src="images/tgm.jpg"/>
-	</a>
 </p>
 
-	
+Fueled by </br> 
+<a href="http://www.yiiframework.com">
+	<img src="images/yii_framework.jpg"/>
+</a>
+<a href="http://www.tgm.ac.at">
+	<img src="images/tgm.jpg"/>
+</a>
+
