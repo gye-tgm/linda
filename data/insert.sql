@@ -12,7 +12,8 @@ INSERT INTO Event(name, location, description, hostid) VALUES
 ('event1','location1','description', 1),
 ('event2','location2','description', 2),
 ('event3','location3','description', 3),
-('event4','location4','description', 4);
+('event4','location4','description', 4),
+('event5','location4','description', 1);
 
 INSERT INTO Comment(text, time, userid, eventid) VALUES
 ('Voll cool!', NOW(), 1, 1),
