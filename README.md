@@ -26,6 +26,17 @@ Wenn ihr mal den Computer stoppen müsst, dann die virtuelle Maschine einfach mi
 
 $ vagrant suspend
 
+Workflow
+========
 
+Jedes mal, wenn man am Projekt arbeitet, sollte man sicherstellen, das das Projekt, das lokal auf der Festplatte liegt, auch auf dem neusten Stand ist. Dies erreicht man durch 
+
+$ git pull
+
+Um die Maschine zu starten, verwendet man Vagrant wie oben beschrieben.
+
+Die Seite kann man am Webbrowser mit localhost:1234/src sehen.
+
+Die zu bearbeitende Files liegen im src/protected/ Ordner, wobei view der Ordner für die Website-Interface-Designer (Medientechniker) zuständig sind. 
 
 [1] http://www.vagrantup.com/downloads
