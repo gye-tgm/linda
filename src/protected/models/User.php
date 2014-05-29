@@ -6,7 +6,6 @@
  * The followings are the available columns in table 'User':
  * @property integer $id
  * @property string $username
- * @property string $roles
  * @property string $password
  *
  * The followings are the available model relations:
@@ -33,11 +32,11 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, roles', 'length', 'max'=>255),
+			array('username', 'length', 'max'=>255),
 			array('password', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, roles, password', 'safe', 'on'=>'search'),
+			array('id, username, password', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +63,6 @@ class User extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'username' => 'Username',
-			'roles' => 'Roles',
 			'password' => 'Password',
 		);
 	}
@@ -89,7 +87,6 @@ class User extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('username',$this->username,true);
-		$criteria->compare('roles',$this->roles,true);
 		$criteria->compare('password',$this->password,true);
 
 		return new CActiveDataProvider($this, array(
