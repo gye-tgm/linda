@@ -37,12 +37,6 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'hostid'); ?>
-		<?php echo $form->textField($model,'hostid'); ?>
-		<?php echo $form->error($model,'hostid'); ?>
-	</div>
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
