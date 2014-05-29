@@ -21,7 +21,7 @@ class UserController extends Controller
 
 	public function actionInit(){
 		$auth=Yii::app()->authManager;
-		}
+	}
 
 	/**
 	 * Specifies the access control rules.
@@ -31,17 +31,17 @@ class UserController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index', 'view', 'hostedEvents'),
+			array('allow',  
+				'actions'=>array('index', 'view', 'create'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+			array('allow',
+				'actions'=>array('update', 'hostedEvents'),
 				'users'=>array('@'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+			array('allow', 
+				'actions'=>array('delete'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -74,8 +74,10 @@ class UserController extends Controller
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+				// $this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('site/login'));
+			}
 		}
 
 		$this->render('create',array(
@@ -178,7 +180,7 @@ class UserController extends Controller
 	/**
 	 * Lists all events hosted by the given user.
 	 */
-	public function actionHostedEvents($id){
+	public function actionHostedEvents(){
 		$dataProvider = new CActiveDataProvider('Event', array(
 			'criteria' => array (
 				'condition'=>"hostid=$id",
