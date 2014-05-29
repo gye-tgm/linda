@@ -6,15 +6,25 @@ $this->pageTitle=Yii::app()->name;
 
 <h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+<p>
+	Use <b>Linda</b> to plan events with your friends! It is widely used in Austria and this website is highly
+	supported by the developer team, even though they are students!
+</p>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
+<p>
+	Creating events with <b>Linda</b> is very easy! Just start register an account, login and get started!
+</p>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<p>
+	This website is fully powered by </br> 
+	<a href="http://www.yiiframework.com">
+		<img src="images/yii_framework.jpg"/>
+	</a>
+</p>
+
+<p>
+	We would like to thank our teachers for helping us to accomplish the journey to success. </br>
+	<a href="http://www.tgm.ac.at">
+		<img src="images/tgm.jpg"/>
+	</a>
+</p>
