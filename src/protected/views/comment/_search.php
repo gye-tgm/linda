@@ -1,45 +1,24 @@
-<?php
-/* @var $this CommentController */
-/* @var $model Comment */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'text'); ?>
-		<?php echo $form->textField($model,'text',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'text',array('class'=>'span5','maxlength'=>255)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'time'); ?>
-		<?php echo $form->textField($model,'time'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'time',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'userid'); ?>
-		<?php echo $form->textField($model,'userid'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'userid',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'eventid'); ?>
-		<?php echo $form->textField($model,'eventid'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'eventid',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->
