@@ -1,5 +1,7 @@
 USE linda;
 
+-- Inserts for testing
+
 INSERT INTO User(username, password) VALUES
 ('user1', 'password1'),
 ('user2', 'password2'),
