@@ -6,13 +6,13 @@ INSERT INTO User(username, password) VALUES
 ('user3', 'password3'),
 ('user4', 'password4');
 
-INSERT INTO Event(name, ort, beschreibung, organisatorid) VALUES
-('event1','ort1','beschreibung', 1),
-('event2','ort2','beschreibung', 2),
-('event3','ort3','beschreibung', 3),
-('event4','ort4','beschreibung', 4);
+INSERT INTO Event(name, location, description, hostid) VALUES
+('event1','location1','description', 1),
+('event2','location2','description', 2),
+('event3','location3','description', 3),
+('event4','location4','description', 4);
 
-INSERT INTO Kommentar(text, zeit, userid, eventid) VALUES
+INSERT INTO Comment(text, time, userid, eventid) VALUES
 ('Voll cool!', NOW(), 1, 1),
 ('Voll toll!', NOW(), 2, 1),
 ('Voll top!', NOW(), 3, 1),
@@ -32,19 +32,19 @@ INSERT INTO User_Event(userid, eventid, signedup) VALUES
 
 
 -- Notification types {EINLADUNG, VERAENDERUNG, GELOESCHT, EVENT_READY}
-INSERT INTO Notification (eventid, typ, zeit) VALUES
+INSERT INTO Notification (eventid, type, time) VALUES
 (1, 0, NOW()),
 (2, 1, NOW()),
 (3, 2, NOW()),
 (4, 3, NOW());
 
-INSERT INTO Termin (eventid, zeit) VALUES
+INSERT INTO Appointment (eventid, time) VALUES
 (1, NOW()),
 (2, NOW()),
 (3, NOW()),
 (4, NOW());
 
-INSERT INTO TerminVereinbarung (terminid, userid, eventid) VALUES
+INSERT INTO AppointmentArrangement (terminid, userid, eventid) VALUES
 (1, 1, 1),
 (1, 2, 1),
 (2, 2, 1),
@@ -53,7 +53,7 @@ INSERT INTO TerminVereinbarung (terminid, userid, eventid) VALUES
 (2, 4, 1),
 (2, 2, 4);
 
-INSERT INTO Notification_User (notificationid, userid, gelesen) VALUES
+INSERT INTO Notification_User (notificationid, userid, isread) VALUES
 (1, 1, 1),
 (1, 2, 0),
 (1, 3, 1),

@@ -20,7 +20,4 @@ if [ !-d $HOME/opt ]; then
 				chgrp -R www-data yii
 
 				mysql -u root < /vagrant/data/all.sql 
-				
-				# Need the schema for CDbAuthManager (see http://www.yiiframework.com/doc/api/1.1/CDbAuthManager)
-				mysql -u root -D linda < $YII/framework/web/auth/schema-mysql.sql 
 fi

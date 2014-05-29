@@ -11,6 +11,7 @@ GRANT ALL PRIVILEGES ON linda.*  TO 'linda'@'%' IDENTIFIED BY 'passwd';
 CREATE TABLE User (
 id INTEGER NOT NULL AUTO_INCREMENT,
 username VARCHAR(255) UNIQUE,
+roles VARCHAR(255), 
 password VARCHAR(20),
 PRIMARY KEY(id)
 )ENGINE=InnoDB;
@@ -18,17 +19,17 @@ PRIMARY KEY(id)
 CREATE TABLE Event (
 id INTEGER NOT NULL AUTO_INCREMENT,
 name VARCHAR(255) NOT NULL,
-ort VARCHAR(255),
-beschreibung VARCHAR(8192),
-organisatorid INTEGER NOT NULL,
+location VARCHAR(255),
+description VARCHAR(8192),
+hostid INTEGER NOT NULL,
 PRIMARY KEY(id),
-FOREIGN KEY(organisatorid) REFERENCES User (id)
+FOREIGN KEY(hostid) REFERENCES User (id)
 )ENGINE=InnoDB;
 
-CREATE TABLE Kommentar(
+CREATE TABLE Comment(
 id INTEGER NOT NULL AUTO_INCREMENT,
 text VARCHAR(255) NOT NULL,
-zeit DATE NOT NULL,
+time DATE NOT NULL,
 userid INTEGER NOT NULL,
 eventid INTEGER NOT NULL,
 PRIMARY KEY(id),
@@ -48,28 +49,29 @@ FOREIGN KEY(eventid) REFERENCES Event (id)
 CREATE TABLE Notification (
 id INTEGER NOT NULL AUTO_INCREMENT,
 eventid INTEGER,
-typ INTEGER,
-zeit  TIMESTAMP,
+type INTEGER,
+time  TIMESTAMP,
 PRIMARY KEY(id),
 FOREIGN KEY (eventid) REFERENCES Event(id)
 )ENGINE=InnoDB;
 
-CREATE TABLE Termin(
+CREATE TABLE Appointment(
 id INTEGER NOT NULL AUTO_INCREMENT,
 eventid INTEGER NOT NULL,
-zeit DATETIME NOT NULL,
+time DATETIME NOT NULL,
 PRIMARY KEY(id),
 FOREIGN KEY (eventid) REFERENCES Event(id)
 )ENGINE=InnoDB;
 
-CREATE TABLE TerminVereinbarung (
+-- old one : TerminVereinbarung
+CREATE TABLE AppointmentArrangement (
 id INTEGER NOT NULL AUTO_INCREMENT,
 terminid INTEGER NOT NULL,
 userid INTEGER NOT NULL,
 eventid INTEGER NOT NULL,
 PRIMARY KEY(id),
 FOREIGN KEY(eventid) REFERENCES Event(id),
-FOREIGN KEY(terminid) REFERENCES Termin(id),
+FOREIGN KEY(terminid) REFERENCES Appointment(id),
 FOREIGN KEY(userid) REFERENCES User(id)
 )ENGINE=InnoDB;
 
@@ -77,7 +79,7 @@ CREATE TABLE Notification_User(
 id INTEGER NOT NULL AUTO_INCREMENT,
 notificationid INTEGER NOT NULL,
 userid INTEGER NOT NULL,
-gelesen TINYINT(1),
+isread TINYINT(1),
 PRIMARY KEY(id),
 FOREIGN KEY(notificationid) REFERENCES Notification (id),
 FOREIGN KEY(userid) REFERENCES User (id)
