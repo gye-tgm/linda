@@ -31,9 +31,12 @@ class EventController extends Controller
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
+			array('allow', // allow authenticated user to perform 'create'
+				'actions'=>array('create'),
+				'users'=>array('@')
+			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'actions'=>array('update'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
@@ -86,21 +89,27 @@ class EventController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		// TODO: use CDbAuthManager instead of this >.<
 		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Event']))
+		if(Yii::app()->user->id == $model->hostid)
 		{
-			$model->attributes=$_POST['Event'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+			// Uncomment the following line if AJAX validation is needed
+			// $this->performAjaxValidation($model);
+			if(isset($_POST['Event']))
+			{
+				$model->attributes=$_POST['Event'];
+				if($model->save())
+					$this->redirect(array('view','id'=>$model->id));
+			}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+			$this->render('update',array(
+						'model'=>$model,
+						));
+		}
+		else
+		{
+			throw new CHttpException(403, 'Your not authorized to update this event!');
+		}
 	}
 
 	/**
@@ -115,6 +124,7 @@ class EventController extends Controller
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		// TODO: Send notification to all users.
 	}
 
 	/**
