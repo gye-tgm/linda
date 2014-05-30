@@ -85,15 +85,13 @@ class EventController extends Controller
 
 	public function actionOrganized()
 	{
-		$id = Yii::app()->user->getId(); 
-		$dataProvider=new CActiveDataProvider('Event', array(
-				'criteria'=>array(
-					'condition'=>"hostid=$id",
-					),
-			) );
-		$this->render('organized',array(
-					'dataProvider'=>$dataProvider,
-					));
+		$userid = Yii::app()->user->getId(); 
+		$events = Event::model()->findAllByAttributes(array('hostid' => $userid)); 
+		$dataProvider = new CActiveDataProvider('Event');
+		$dataProvider->setData($events);
+		$this->render('organized', array(
+			'dataProvider' => $dataProvider
+			));
 	}
 	
 	public function actionInvited()
@@ -102,6 +100,7 @@ class EventController extends Controller
 		$user=User::model()->findByPk($id);
 		$dataProvider=new CActiveDataProvider('UserEvent');
 		$dataProvider->setData($user->events);
+	
 		$this->render('invited',array(
 					'dataProvider'=>$dataProvider,
 					));

@@ -14,7 +14,26 @@ $this->menu=array(
 
 <h1>Organized Events</h1>
 
-<?php $this->widget('bootstrap.widgets.TbListView', array(
-			'dataProvider'=>$dataProvider,
-			'itemView'=>'_view',
-			)); ?>
+<?php
+
+
+$this->widget('bootstrap.widgets.TbGridView', array(
+    'dataProvider'=>$dataProvider,
+		'type'=>'striped bordered condensed',
+		'columns'=>array(
+			array('name'=>'id', 'header'=>'#'),
+			array('name'=>'name', 'header'=>'Name'),
+			array('name'=>'location', 'header'=>'Location'),
+			array('header'=>'Progress', 
+				'class'=>'application.components.BootProgressColumn',
+				'animated' => true,
+				'striped' => true,
+				'percent' => 30.33333, // TODO: acceptedUsers / invitedUsers
+			),
+			array(
+				'class'=>'bootstrap.widgets.TbButtonColumn',
+				'htmlOptions'=>array('style'=>'width: 50px'),
+				),
+			),
+		));
+?>
