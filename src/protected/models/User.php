@@ -12,7 +12,7 @@
  * @property AppointmentArrangement[] $appointmentArrangements
  * @property Comment[] $comments
  * @property Event[] $events
- * @property NotificationUser[] $notificationUsers
+ * @property Notification[] $notifications
  */
 class User extends CActiveRecord
 {
@@ -51,7 +51,7 @@ class User extends CActiveRecord
 			'appointmentArrangements' => array(self::HAS_MANY, 'AppointmentArrangement', 'userid'),
 			'comments' => array(self::HAS_MANY, 'Comment', 'userid'),
 			'events' => array(self::MANY_MANY, 'Event', 'User_Event(userid, eventid)'),
-			'notificationUsers' => array(self::HAS_MANY, 'NotificationUser', 'userid'),
+			'notifications' => array(self::MANY_MANY, 'Notification', 'Notification_User(userid, notificationid)'),
 		);
 	}
 

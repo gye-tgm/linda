@@ -4,14 +4,9 @@
  * This is the model class for table "Notification_User".
  *
  * The followings are the available columns in table 'Notification_User':
- * @property integer $id
  * @property integer $notificationid
  * @property integer $userid
  * @property integer $isread
- *
- * The followings are the available model relations:
- * @property Notification $notification
- * @property User $user
  */
 class NotificationUser extends CActiveRecord
 {
@@ -35,7 +30,7 @@ class NotificationUser extends CActiveRecord
 			array('notificationid, userid, isread', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, notificationid, userid, isread', 'safe', 'on'=>'search'),
+			array('notificationid, userid, isread', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,8 +42,6 @@ class NotificationUser extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'notification' => array(self::BELONGS_TO, 'Notification', 'notificationid'),
-			'user' => array(self::BELONGS_TO, 'User', 'userid'),
 		);
 	}
 
@@ -58,7 +51,6 @@ class NotificationUser extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
 			'notificationid' => 'Notificationid',
 			'userid' => 'Userid',
 			'isread' => 'Isread',
@@ -83,7 +75,6 @@ class NotificationUser extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
 		$criteria->compare('notificationid',$this->notificationid);
 		$criteria->compare('userid',$this->userid);
 		$criteria->compare('isread',$this->isread);

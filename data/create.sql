@@ -75,11 +75,10 @@ FOREIGN KEY(userid) REFERENCES User(id)
 )ENGINE=InnoDB;
 
 CREATE TABLE Notification_User(
-id INTEGER NOT NULL AUTO_INCREMENT,
 notificationid INTEGER NOT NULL,
 userid INTEGER NOT NULL,
 isread TINYINT(1),
-PRIMARY KEY(id),
+PRIMARY KEY(notificationid, userid),
 FOREIGN KEY(notificationid) REFERENCES Notification (id),
 FOREIGN KEY(userid) REFERENCES User (id)
 )ENGINE=InnoDB;

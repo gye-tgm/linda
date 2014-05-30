@@ -11,7 +11,7 @@
  *
  * The followings are the available model relations:
  * @property Event $event
- * @property NotificationUser[] $notificationUsers
+ * @property User[] $users
  */
 class Notification extends CActiveRecord
 {
@@ -48,7 +48,7 @@ class Notification extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'event' => array(self::BELONGS_TO, 'Event', 'eventid'),
-			'notificationUsers' => array(self::HAS_MANY, 'NotificationUser', 'notificationid'),
+			'users' => array(self::MANY_MANY, 'User', 'Notification_User(notificationid, userid)'),
 		);
 	}
 
