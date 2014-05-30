@@ -99,11 +99,9 @@ class EventController extends Controller
 	public function actionInvited()
 	{
 		$id = Yii::app()->user->getId(); 
-		$dataProvider=new CActiveDataProvider('UserEvent', array(
-				'criteria'=>array(
-					'condition'=>"userid=$id",
-					),
-			) );
+		$user=User::model()->findByPk($id);
+		$dataProvider=new CActiveDataProvider('UserEvent');
+		$dataProvider->setData($user->events);
 		$this->render('invited',array(
 					'dataProvider'=>$dataProvider,
 					));

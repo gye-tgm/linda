@@ -122,7 +122,10 @@ class NotificationController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$id = Yii::app()->user->getId(); 
+		$user=User::model()->findByPk($id);
 		$dataProvider=new CActiveDataProvider('Notification');
+		$dataProvider->setData($user->notifications);
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
