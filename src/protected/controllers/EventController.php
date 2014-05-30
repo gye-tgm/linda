@@ -31,7 +31,7 @@ class EventController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'delete', 'organized'),
+				'actions'=>array('create','update', 'delete', 'organized', 'invited'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -95,6 +95,20 @@ class EventController extends Controller
 					'dataProvider'=>$dataProvider,
 					));
 	}
+	
+	public function actionInvited()
+	{
+		$id = Yii::app()->user->getId(); 
+		$dataProvider=new CActiveDataProvider('UserEvent', array(
+				'criteria'=>array(
+					'condition'=>"userid=$id",
+					),
+			) );
+		$this->render('invited',array(
+					'dataProvider'=>$dataProvider,
+					));
+	}
+	
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
