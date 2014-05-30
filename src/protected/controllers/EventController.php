@@ -15,7 +15,6 @@ class EventController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -31,15 +30,12 @@ class EventController extends Controller
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'create'
-				'actions'=>array('create'),
-				'users'=>array('@')
-			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update'),
+				'actions'=>array('create','update', 'delete', 'organized'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -66,7 +62,48 @@ class EventController extends Controller
 	public function actionCreate()
 	{
 		$model=new Event;
-		$model->hostid = Yii::app()->user->getId();
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Event']))
+		{
+			// We assign the host id of the current user to this event.
+			$model->hostid = Yii::app()->user->getId();	
+			$model->attributes=$_POST['Event'];
+
+			// If a problem happens at here, then we will rerender the form 
+			// for the next render.
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
+		}
+
+		$this->render('create',array(
+			'model'=>$model,
+		));
+	}
+
+	public function actionOrganized()
+	{
+		$id = Yii::app()->user->getId(); 
+		$dataProvider=new CActiveDataProvider('Event', array(
+				'criteria'=>array(
+					'condition'=>"hostid=$id",
+					),
+			) );
+		$this->render('organized',array(
+					'dataProvider'=>$dataProvider,
+					));
+	}
+	/**
+	 * Updates a particular model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function actionUpdate($id)
+	{
+		$model=$this->loadModel($id);
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -77,39 +114,9 @@ class EventController extends Controller
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
-		$this->render('create',array(
+		$this->render('update',array(
 			'model'=>$model,
 		));
-	}
-
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
-	 */
-	public function actionUpdate($id)
-	{
-		// TODO: use CDbAuthManager instead of this >.<
-		$model=$this->loadModel($id);
-		if(Yii::app()->user->id == $model->hostid)
-		{
-			// Uncomment the following line if AJAX validation is needed
-			// $this->performAjaxValidation($model);
-			if(isset($_POST['Event']))
-			{
-				$model->attributes=$_POST['Event'];
-				if($model->save())
-					$this->redirect(array('view','id'=>$model->id));
-			}
-
-			$this->render('update',array(
-						'model'=>$model,
-						));
-		}
-		else
-		{
-			throw new CHttpException(403, 'Your not authorized to update this event!');
-		}
 	}
 
 	/**
@@ -119,12 +126,17 @@ class EventController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-		// TODO: Send notification to all users.
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
 	/**
@@ -156,9 +168,7 @@ class EventController extends Controller
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return Event the loaded model
-	 * @throws CHttpException
+	 * @param integer the ID of the model to be loaded
 	 */
 	public function loadModel($id)
 	{
@@ -170,7 +180,7 @@ class EventController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Event $model the model to be validated
+	 * @param CModel the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{

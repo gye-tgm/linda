@@ -12,8 +12,9 @@
 	<?php echo $form->textFieldRow($model,'location',array('class'=>'span5','maxlength'=>255)); ?>
 
 	<?php echo $form->textFieldRow($model,'description',array('class'=>'span5','maxlength'=>8192)); ?>
-
-	<?php echo $form->textFieldRow($model,'hostid',array('class'=>'span5')); ?>
+ <!--  No need for host id, it is the current users id.	
+ 		<?php echo $form->textFieldRow($model,'hostid',array('class'=>'span5')); ?> 
+ -->
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

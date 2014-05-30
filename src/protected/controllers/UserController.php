@@ -15,12 +15,7 @@ class UserController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
-	}
-
-	public function actionInit(){
-		$auth=Yii::app()->authManager;
 	}
 
 	/**
@@ -31,17 +26,17 @@ class UserController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  
-				'actions'=>array('index', 'view', 'create'),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
-			array('allow',
-				'actions'=>array('update', 'hostedEvents'),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update'),
 				'users'=>array('@'),
 			),
-			array('allow', 
-				'actions'=>array('delete'),
-				'users'=>array('@'),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -74,10 +69,8 @@ class UserController extends Controller
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
-			if($model->save()){
-				// $this->redirect(array('view','id'=>$model->id));
-				$this->redirect(array('site/login'));
-			}
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -116,11 +109,17 @@ class UserController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
 	/**
@@ -152,9 +151,7 @@ class UserController extends Controller
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return User the loaded model
-	 * @throws CHttpException
+	 * @param integer the ID of the model to be loaded
 	 */
 	public function loadModel($id)
 	{
@@ -166,7 +163,7 @@ class UserController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param User $model the model to be validated
+	 * @param CModel the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
@@ -176,17 +173,4 @@ class UserController extends Controller
 			Yii::app()->end();
 		}
 	}
-
-	/**
-	 * Lists all events hosted by the given user.
-	 */
-	public function actionHostedEvents(){
-		$dataProvider = new CActiveDataProvider('Event', array(
-			'criteria' => array (
-				'condition'=>"hostid=$id",
-			),
-		));
-		$this->render('hevents', array('dataProvider' => $dataProvider));
-	}
-
 }
