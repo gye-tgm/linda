@@ -7,7 +7,7 @@ ln -fs /vagrant /var/www
 # Get Yii from official website if not already done.
 HOME=/home/vagrant
 YII=$HOME/yii
-if [ !-d $HOME/opt ]; then
+if [ ! -d $HOME/opt ]; then
 				mkdir -p $HOME/opt
 				cd $HOME/opt
 				wget https://github.com/yiisoft/yii/releases/download/1.1.14/yii-1.1.14.f0fee9.tar.gz
