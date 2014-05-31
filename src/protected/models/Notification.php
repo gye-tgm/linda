@@ -103,4 +103,26 @@ class Notification extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	/**
+	*  
+	*/
+	public static function translate($eventid,$type){
+		$name = Event::model()->findByPk($eventid)->name;
+		if($type == 0){
+			return "You've been invited to $name.";
+		} else if($type == 1){
+			return $name." has been changed.";
+		} else if($type == 2){
+			return $name." has been deleted.";
+		} else if($type == 3){
+			return "You are no longer invited to ".$name.".";
+		} else if($type == 4){
+			return "Every participant has made some proposals, you can fix the date for $name now";
+		} else if($type == 5){
+			return "The organizer has made fixed arrangemnts for $name";
+		}
+		
+		
+	}
 }
