@@ -11,3 +11,5 @@ themes/classic/views/
 
 # VIM swap files
 *.swp
+
+tmp/
