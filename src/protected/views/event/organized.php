@@ -3,12 +3,14 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-		'Events',
+		'Events'=>array('index'),
+		'Organized',
 		);
 
 $this->menu=array(
-		array('label'=>'Create Event', 'url'=>array('create')),
-		array('label'=>'Manage Event', 'url'=>array('admin')),
+		array('label'=>'Create Event', 'url'=>array('create'),'icon'=>'plus'),
+		array('label'=>'Invited Events', 'url'=>array('invited'),'icon'=>'user'),
+		array('label'=>'List Events', 'url'=>array('index'),'icon'=>'book'),
 		);
 ?>
 

@@ -4,8 +4,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create Event','url'=>array('create')),
-	array('label'=>'Manage Event','url'=>array('admin')),
+	array('label'=>'YOUR OPTIONS'),
+	array('label'=>'Create Event','url'=>array('create'), 'icon' => 'plus'),
+	array('label'=>'Organized Events','url'=>array('organized'), 'icon' => 'pencil'),
+	array('label'=>'Invited Events','url'=>array('invited'), 'icon' => 'user'),
 );
 ?>
 

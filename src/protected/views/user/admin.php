@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List User','url'=>array('index')),
-	array('label'=>'Create User','url'=>array('create')),
+	array('label'=>'List User','url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Create User','url'=>array('create'),'icon'=>'plus'),
 );
 
 Yii::app()->clientScript->registerScript('search', "

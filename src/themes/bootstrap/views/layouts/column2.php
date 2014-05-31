@@ -6,19 +6,22 @@
             <?php echo $content; ?>
         </div><!-- content -->
     </div>
+
     <div class="span3">
         <div id="sidebar">
-        <?php
-            $this->beginWidget('zii.widgets.CPortlet', array(
-                'title'=>'Operations',
-            ));
-            $this->widget('bootstrap.widgets.TbMenu', array(
-                'items'=>$this->menu,
-                'htmlOptions'=>array('class'=>'operations'),
-            ));
-            $this->endWidget();
-        ?>
-        </div><!-- sidebar -->
+
+<?php 
+	
+	$this->beginWidget('bootstrap.widgets.TbMenu', array(
+		'type'=>'list',
+		'items'=>$this->menu,
+		'htmlOptions'=>array('class'=>'well'),
+	));
+	$this->endWidget();
+?>
+
     </div>
 </div>
+
+
 <?php $this->endContent(); ?>
