@@ -52,7 +52,8 @@ $('#btn-add-user').click(function(){
 		</div>
 	</div>
 
-	<!-- Invitations -->
+
+<!--
 	<div id="userinvitations">
 		Invite users 
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
@@ -63,15 +64,13 @@ $('#btn-add-user').click(function(){
 					)); ?>
 		<br/>
 
-		<!-- todo: we have to load the old data first! -->
-
 		<div id="userinvs">
 			<div id="oneuser">
 				<input style="height:20px;" type="textfield" name="users[]">  <br/>
 			</div>
 		</div>
 	</div>
-
+-->
 
 <?php 
 /*	
@@ -98,7 +97,17 @@ $('#btn-add-user').click(function(){
 			'buttonType'=>'submit',
 			'type'=>'primary',
 			'label'=>$model->isNewRecord ? 'Create' : 'Save',
-		)); ?>
+		));
+		
+		if(!$model->isNewRecord){
+			$this->widget('bootstrap.widgets.TbButton', array(
+						'buttonType'=>'link',
+						'type'=>'inverse',
+						'url'=>$this->createUrl('invite', array('id'=>$model->id)),
+						'label'=>'Invite users'
+						));
+		}
+		?>
 	</div>
 
 <?php $this->endWidget(); ?>
