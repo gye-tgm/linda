@@ -3,7 +3,8 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-		'Events',
+		'Events' => array('index'),
+		'Invited Events',
 		);
 
 $this->menu=array(
