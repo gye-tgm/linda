@@ -15,6 +15,21 @@
  */
 class Notification extends CActiveRecord
 {
+	// The user got invited by the organizer.
+	const EVENT_INVITATION = 0;
+	// The event has been changed.
+	// (Nice to have: user gets no notifications, if the organizer only added a new user)
+	const EVENT_EDITED = 1;
+	// The event has been deleted.
+	const EVENT_DELETED = 2;
+	// The invitation to the specified user has been deleted. The user can no longer participate at the event for now.
+	const INVITATION_DELETED = 3;
+	// The organizer will be notified, if the event is ready.
+	const EVENT_READY = 4;
+	// The event is fully done, this means every arrangement has been made already.
+	const EVENT_OK = 5;
+	
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -103,26 +118,24 @@ class Notification extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-	
+
 	/**
 	*  
 	*/
 	public static function translate($eventid,$type){
 		$name = Event::model()->findByPk($eventid)->name;
-		if($type == 0){
+		if($type == Notification::EVENT_INVITATION){
 			return "You've been invited to $name.";
-		} else if($type == 1){
-			return $name." has been changed.";
-		} else if($type == 2){
-			return $name." has been deleted.";
-		} else if($type == 3){
-			return "You are no longer invited to ".$name.".";
-		} else if($type == 4){
+		} else if($type == Notification::EVENT_EDITED){
+			return "$name has been edited. Check it out!";
+		} else if($type == Notification::EVENT_DELETED){
+			return "$name has been deleted.";
+		} else if($type == Notification::INVITATION_DELETED){
+			return "You are no longer invited to $name.";
+		} else if($type == Notification::EVENT_READY){
 			return "Every participant has made some proposals, you can fix the date for $name now";
-		} else if($type == 5){
+		} else if($type == Notification::EVENT_OK){
 			return "The organizer has made fixed arrangemnts for $name";
 		}
-		
-		
 	}
 }
