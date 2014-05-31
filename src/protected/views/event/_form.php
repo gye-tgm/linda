@@ -39,9 +39,15 @@ $('#btn-add-user').click(function(){
 		<!-- todo: we have to load the old data first! -->
 
 		<div id="timeprops">
-			<div id="onetimeprop">
-				<input style="height:20px;" id="publishDate" type="datetime-local" name="appointments[]" class="datetime"> <br/>
-			</div>
+				<?php
+					foreach($model->appointments as $ap){
+						$value = date('Y-m-d\TH:i:s', strtotime($ap->time));
+						// echo $value;
+						
+						echo "<div id='onetimeprop'><input style='height:20px;' id='publishDate' type='datetime-local' name='appointments[]' class='datetime' value='$value'> <br/> </div>";
+					}
+				?>
+				<div id="onetimeprop"><input style="height:20px;" id="publishDate" type="datetime-local" name="appointments[]" class="datetime"> <br/></div>
 		</div>
 	</div>
 

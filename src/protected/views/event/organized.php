@@ -18,7 +18,6 @@ $this->menu=array(
 
 <?php
 
-
 $this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider'=>$dataProvider,
 		'type'=>'striped bordered condensed',
@@ -30,7 +29,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 				'class'=>'application.components.BootProgressColumn',
 				'animated' => true,
 				'striped' => true,
-				'percent' => 30.33333, // TODO: acceptedUsers / invitedUsers
+				'value' => 'Event::calcProgress($data->id)', // TODO: acceptedUsers / invitedUsers
 			),
 			array(
 				'class'=>'bootstrap.widgets.TbButtonColumn',

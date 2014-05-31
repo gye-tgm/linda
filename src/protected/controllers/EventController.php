@@ -153,6 +153,17 @@ class EventController extends Controller
 		if(isset($_POST['Event']))
 		{
 			$model->attributes=$_POST['Event'];
+			// todo: this is so holy inefficient, get rid of this piece of bread	
+			Appointment::model()->deleteAll('eventid=:eventid', array(':eventid'=>$id));
+			foreach($_POST['appointments'] as $value){
+				if(!empty($value)){
+					$time = strtotime($value);
+					$appointment = new Appointment;
+					$appointment->eventid=$id;
+					$appointment->time=date('Y-m-d H:i:s', $time);
+					$appointment->save();
+				}
+			}
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

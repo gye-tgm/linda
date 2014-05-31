@@ -117,4 +117,15 @@ class Event extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	/**
+	 * In percentage (integer) how many particpants have already
+	 * signed up for the event.
+	 * @param integer $id the id of the event
+	 * @return the progress in percent 
+	 */
+	public static function calcProgress($id)
+	{
+		return 42; // todo
+	}
 }
