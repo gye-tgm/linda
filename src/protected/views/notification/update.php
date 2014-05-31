@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Notification', 'url'=>array('index')),
-	array('label'=>'Create Notification', 'url'=>array('create')),
-	array('label'=>'View Notification', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Notification', 'url'=>array('admin')),
+	array('label'=>'List Notification', 'url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Create Notification', 'url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'View Notification', 'url'=>array('view', 'id'=>$model->id),'icon'=>'icon-eye-open'),
+	array('label'=>'Manage Notification', 'url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 

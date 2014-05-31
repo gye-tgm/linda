@@ -8,11 +8,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Notification', 'url'=>array('index')),
-	array('label'=>'Create Notification', 'url'=>array('create')),
-	array('label'=>'Update Notification', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Notification', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Notification', 'url'=>array('admin')),
+	array('label'=>'List Notification', 'url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Create Notification', 'url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'Update Notification', 'url'=>array('update', 'id'=>$model->id),'icon'=>'refresh'),
+	array('label'=>'Delete Notification', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?'),'icon'=>'icon-trash'),
+	array('label'=>'Manage Notification', 'url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 

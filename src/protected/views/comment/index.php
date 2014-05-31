@@ -4,8 +4,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create Comment','url'=>array('create')),
-	array('label'=>'Manage Comment','url'=>array('admin')),
+	array('label'=>'Create Comment','url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'Manage Comment','url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 

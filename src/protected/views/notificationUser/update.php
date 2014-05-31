@@ -6,10 +6,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List NotificationUser','url'=>array('index')),
-	array('label'=>'Create NotificationUser','url'=>array('create')),
-	array('label'=>'View NotificationUser','url'=>array('view','id'=>$model->id)),
-	array('label'=>'Manage NotificationUser','url'=>array('admin')),
+	array('label'=>'List NotificationUser','url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Create NotificationUser','url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'View NotificationUser','url'=>array('view','id'=>$model->id),'icon'=>'icon-eye-open'),
+	array('label'=>'Manage NotificationUser','url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 

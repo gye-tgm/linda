@@ -4,8 +4,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create NotificationUser','url'=>array('create')),
-	array('label'=>'Manage NotificationUser','url'=>array('admin')),
+	array('label'=>'Create NotificationUser','url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'Manage NotificationUser','url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 

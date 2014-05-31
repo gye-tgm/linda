@@ -6,10 +6,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Comment','url'=>array('index')),
-	array('label'=>'Create Comment','url'=>array('create')),
-	array('label'=>'View Comment','url'=>array('view','id'=>$model->id)),
-	array('label'=>'Manage Comment','url'=>array('admin')),
+	array('label'=>'List Comment','url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Create Comment','url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'View Comment','url'=>array('view','id'=>$model->id),'icon'=>'icon-eye-open'),
+	array('label'=>'Manage Comment','url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 
