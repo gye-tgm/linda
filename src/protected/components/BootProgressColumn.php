@@ -67,15 +67,11 @@ class BootProgressColumn extends CDataColumn {
 		if ($this->value !== null)
 		{
 			$value = $this->evaluateExpression($this->value, array('data' => $data, 'row' => $row));
-
 		}
 		else if ($this->name !== null)
-			$value = CHtml::value($data, $this->name);        
-
-		/*
-		if($this->percent!==0)
+			$value = CHtml::value($data, $this->name);       
+		if($this->percent!==null && isset($value))
 			$this->percent = $value;
-		*/
 		echo CHtml::openTag('div', $this->htmlOpt);
 		echo '<div class="bar" style="width: ' . $this->percent . '%;"></div>';
 		echo '</div>';
