@@ -55,7 +55,8 @@ class Event extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'appointments' => array(self::HAS_MANY, 'Appointment', 'eventid'),
-			'appointmentArrangements' => array(self::HAS_MANY, 'AppointmentArrangement', 'eventid'),
+			'proposedArrangements' => array(self::HAS_MANY, 'AppointmentArrangement', 'eventid'),
+			'finalArrangements' => array(self::HAS_MANY, 'AppointmentArrangement', 'eventid'),
 			'comments' => array(self::HAS_MANY, 'Comment', 'eventid'),
 			'host' => array(self::BELONGS_TO, 'User', 'hostid'),
 			'notifications' => array(self::HAS_MANY, 'Notification', 'eventid'),
