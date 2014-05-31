@@ -20,18 +20,11 @@ $('#btn-add-user').click(function(){
 ");
 // http://stackoverflow.com/questions/8298138/cloning-elements-avoiding-more-than-one-clone-at-a-time-when-adding
 ?>
-
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
-
 	<?php echo $form->errorSummary($model); ?>
-
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>255)); ?>
-
 	<?php echo $form->textFieldRow($model,'location',array('class'=>'span5','maxlength'=>255)); ?>
-
-
 	<?php echo $form->textAreaRow($model,'description',array('class'=>'span8', 'rows'=>5, 'maxlength'=>8192)); ?>
-
 <br/>
 	<div id="timeproposal">
 		Time proposals 

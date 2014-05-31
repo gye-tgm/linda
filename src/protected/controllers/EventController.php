@@ -100,12 +100,29 @@ class EventController extends Controller
 	public function actionInvite($id)
 	{
 		// todo: check access rights
-		$event = Event::model()->findByPk($id);	
+		$usermodel = new User;
+		
+		if(isset($_POST['User']))
+		{
+			$username = $_POST['User']['username'];
+			// Username is unique
+			$user = User::model()->findByAttributes(array('username'=>$username));
+			// First check if there is already an invitation
+			if(!UserEvent::createInvitation($user->id, $id)){
+				var_dump($user);
+			} else {
+			}
+		}
+		
+		$model = Event::model()->findByPk($id);	
+		
+
 		$dataProvider = new CActiveDataProvider('User');
-		$dataProvider->setData($event->users);	
+		$dataProvider->setData($model->users);	
 		$this->render('invite', array(
 			'dataProvider' => $dataProvider,
-			'event' => $event,
+			'model' => $model,
+			'usermodel' => $usermodel,
 			));
 	}
 

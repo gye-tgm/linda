@@ -1,6 +1,6 @@
 <?php
 /* @var $this EventController */
-/* @var $event Event */
+/* @var $model Event */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
@@ -31,5 +31,23 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 				),
 			),
 		));
-
 ?>
+<?php
+$form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+			'id'=>'user-form',
+			'enableAjaxValidation'=>false,
+			));
+?>
+
+<?php echo $form->errorSummary($usermodel); ?>
+<?php echo $form->textFieldRow($usermodel,'username',array('class'=>'span5','maxlength'=>255)); ?>
+
+</br>
+<?php 	$this->widget('bootstrap.widgets.TbButton', array(
+				'buttonType'=>'submit',
+				'type'=>'Invite',
+				'label'=>'Invite user'
+				)); ?>
+
+<?php $this->endWidget(); ?>
+

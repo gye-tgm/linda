@@ -94,4 +94,9 @@ class NotificationUser extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public static function createNotification($type, $eventid, $userid){
+		// Check if the notification exists in the database.
+		// $notification = self::model()->findByPk(
+	}
 }

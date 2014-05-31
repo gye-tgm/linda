@@ -94,4 +94,24 @@ class UserEvent extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public static function createInvitation($userid, $eventid)
+	{
+		// Create one in the table, 
+		$inv = self::model()->findByAttributes(array("userid" => $userid, "eventid" => $eventid));
+		if($inv !== null){ // this already exists in the database.
+			return false;
+		}
+		
+		$inv = new UserEvent;
+		$inv->userid = $userid;
+		$inv->eventid = $eventid;
+		$inv->signedup = 0;
+		if(!$inv->save()){
+			// todo: appropriate message
+		}
+		// NotificationUser::createNotification();
+		// todo: notify invited user
+		return true;
+	}
 }
