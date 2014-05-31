@@ -8,11 +8,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Appointment', 'url'=>array('index')),
-	array('label'=>'Create Appointment', 'url'=>array('create')),
-	array('label'=>'Update Appointment', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Appointment', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Appointment', 'url'=>array('admin')),
+	array('label'=>'List Appointment', 'url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Create Appointment', 'url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'Update Appointment', 'url'=>array('update', 'id'=>$model->id),'icon'=>'refresh'),
+	array('label'=>'Delete Appointment', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?'),'icon'=>'icon-trash'),
+	array('label'=>'Manage Appointment', 'url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 

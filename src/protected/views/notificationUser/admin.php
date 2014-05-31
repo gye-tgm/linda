@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List NotificationUser','url'=>array('index')),
-	array('label'=>'Create NotificationUser','url'=>array('create')),
+	array('label'=>'List NotificationUser','url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Create NotificationUser','url'=>array('create'),'icon'=>'plus'),
 );
 
 Yii::app()->clientScript->registerScript('search', "

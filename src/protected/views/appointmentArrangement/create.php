@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List AppointmentArrangement', 'url'=>array('index')),
-	array('label'=>'Manage AppointmentArrangement', 'url'=>array('admin')),
+	array('label'=>'List AppointmentArrangement', 'url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Manage AppointmentArrangement', 'url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 

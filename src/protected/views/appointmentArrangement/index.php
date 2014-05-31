@@ -7,8 +7,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create AppointmentArrangement', 'url'=>array('create')),
-	array('label'=>'Manage AppointmentArrangement', 'url'=>array('admin')),
+	array('label'=>'Create AppointmentArrangement', 'url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'Manage AppointmentArrangement', 'url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 

@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List AppointmentArrangement', 'url'=>array('index')),
-	array('label'=>'Create AppointmentArrangement', 'url'=>array('create')),
-	array('label'=>'View AppointmentArrangement', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage AppointmentArrangement', 'url'=>array('admin')),
+	array('label'=>'List AppointmentArrangement', 'url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Create AppointmentArrangement', 'url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'View AppointmentArrangement', 'url'=>array('view', 'id'=>$model->id),'icon'=>'icon-eye-open'),
+	array('label'=>'Manage AppointmentArrangement', 'url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 

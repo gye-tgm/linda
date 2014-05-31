@@ -5,11 +5,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Event','url'=>array('index')),
-	array('label'=>'Create Event','url'=>array('create')),
-	array('label'=>'Update Event','url'=>array('update','id'=>$model->id)),
-	array('label'=>'Delete Event','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Event','url'=>array('admin')),
+	array('label'=>'List Event','url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Create Event','url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'Update Event','url'=>array('update','id'=>$model->id),'icon'=>'refresh'),
+	array('label'=>'Delete Event','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?'),'icon'=>'icon-trash'),
+	array('label'=>'Manage Event','url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 

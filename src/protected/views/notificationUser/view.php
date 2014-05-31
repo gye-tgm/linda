@@ -5,11 +5,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List NotificationUser','url'=>array('index')),
-	array('label'=>'Create NotificationUser','url'=>array('create')),
-	array('label'=>'Update NotificationUser','url'=>array('update','id'=>$model->id)),
-	array('label'=>'Delete NotificationUser','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage NotificationUser','url'=>array('admin')),
+	array('label'=>'List NotificationUser','url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Create NotificationUser','url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'Update NotificationUser','url'=>array('update','id'=>$model->id),'icon'=>'refresh'),
+	array('label'=>'Delete NotificationUser','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?'),'icon'=>'icon-trash'),
+	array('label'=>'Manage NotificationUser','url'=>array('admin'),'icon'=>'pencil'),
 );
 ?>
 
