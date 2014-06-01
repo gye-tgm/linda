@@ -126,6 +126,11 @@ class Event extends CActiveRecord
 	 */
 	public static function calcProgress($id)
 	{
-		return 42; // todo
+		// todo: unittest
+		$available=UserEvent::model()->count('eventid=:eventid', array('eventid'=>$id));
+		$set=UserEvent::model()->count('eventid=:eventid and signedup=1', array('eventid'=>$id));
+		if($available == 0)
+			return 0;
+		return (100 * $set) / $available;
 	}
 }
