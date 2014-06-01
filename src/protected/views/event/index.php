@@ -19,7 +19,7 @@ Or you can host your own event! </br>
 
 <?php
 
-require dirname(__FILE__).'/../../extensions/giphy-php/src/rfreebern/Giphy.php';
+require dirname(__FILE__).'/../../extensions/rfreebern/Giphy.php';
 $giphy = new \rfreebern\Giphy(); 
 
 $numberOfGifs = 0;
