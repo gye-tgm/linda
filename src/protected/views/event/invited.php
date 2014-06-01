@@ -16,7 +16,28 @@ $this->menu=array(
 
 <h1>Invited Events</h1>
 
-<?php $this->widget('bootstrap.widgets.TbListView', array(
+
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+    'type'=>'striped bordered condensed',
+    'dataProvider'=>$dataProvider,
+    'template'=>"{items}",
+    'columns'=>array(
+		array('name'=>'id','header'=>'ID'),
+        array('name'=>'name','header'=>'Name'),
+		array('name'=>'location','header'=>'Location'),
+		array('name'=>'description','header'=>'Description'),
+		array('name'=>'hostid','header'=>'HostId'),
+		array(
+				'class'=>'CButtonColumn',
+				'template' => '{delete}',
+				'url'=>Yii::app()->controller->createUrl(array('event/accept')),
+				),
+    ),
+));
+?>
+
+<?php /*$this->widget('bootstrap.widgets.TbListView', array(
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_invited',
-			)); ?>
+			)); */
+?>

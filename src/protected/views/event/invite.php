@@ -22,13 +22,13 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider'=>$dataProvider,
 		'type'=>'striped bordered condensed',
 		'columns'=>array(
-			array('name'=>'id', 'header'=>'#'),
 			array('name'=>'username', 'header'=>'Name'),
 			array('value'=>'"accepted"', 'header'=>'Appointment 1'),
 			array(
-				'class'=>'CButtonColumn',
-				'template' => '{delete}',
-				),
+				'asExpression'=>function($data, $row){
+					return array(
+					'url' => CHtml::createUrl('accept', array('id'=>$data->id)),
+				}
 			),
 		));
 ?>
