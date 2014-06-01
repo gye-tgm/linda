@@ -30,7 +30,6 @@ $this->menu=array(
 		array(
 				'class'=>'CButtonColumn',
 				'template' => '{delete}',
-				'url'=>Yii::app()->controller->createUrl(array('event/accept')),
 				),
     ),
 ));
