@@ -44,16 +44,6 @@ class EventController extends Controller
 		);
 	}
 
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
 
 	/**
 	 * Creates a new model.
@@ -124,6 +114,20 @@ class EventController extends Controller
 			'model' => $model,
 			'usermodel' => $usermodel,
 			));
+	}
+
+	/**
+	 * Displays a particular model.
+	 * @param integer $id the ID of the model to be displayed
+	 */
+	public function actionView($id)
+	{
+		$comment=Comment::model()->findAllByAttributes(array('eventid'=>$id));
+		
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
+			'comment'=>$comment,
+		));
 	}
 
 	public function actionInvited()
