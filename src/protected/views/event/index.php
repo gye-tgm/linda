@@ -15,31 +15,21 @@ $this->menu=array(
 
 <p>
 Howdy! Check out the events you have organized or the events you've been invited to. </br>
-<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'label'=>'Organized Events',
-			'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-			'size'=>'normal', // null, 'large', 'small' or 'mini'
-			'url'=>array('organized'),
-			)); ?>
-
-<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'label'=>'Invited Events',
-			'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-			'size'=>'normal', // null, 'large', 'small' or 'mini'
-			'url'=>array('invited'),
-			)); ?>
-</p>
-
-<p>
 Or you can host your own event! </br>
-<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'label'=>'Create a new Event',
-			'type'=>'danger', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-			'size'=>'normal', // null, 'large', 'small' or 'mini'
-			'url'=>array('create'),
-			)); ?>
-</p>
 
+<?php
+
+require dirname(__FILE__).'/../../extensions/giphy-php/src/rfreebern/Giphy.php';
+$giphy = new \rfreebern\Giphy(); 
+
+$numberOfGifs = 0;
+for($i = 0; $i < $numberOfGifs; $i++){
+	$result = $giphy->random('funny');
+	echo '<img style="width: 50%; height: 50%;" src="'.$result->data->image_original_url.'"/>';
+}
+?>
+
+</p>
 <!--
 <?php $this->widget('bootstrap.widgets.TbListView',array(
 	'dataProvider'=>$dataProvider,

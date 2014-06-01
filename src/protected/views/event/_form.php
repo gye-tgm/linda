@@ -20,8 +20,14 @@ $('#btn-add-user').click(function(){
 ");
 // http://stackoverflow.com/questions/8298138/cloning-elements-avoiding-more-than-one-clone-at-a-time-when-adding
 ?>
-	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
+	<?php
+		if($model->isNewRecord){
+			Yii::app()->user->setFlash('info', 'You can invite the users after you have created the event.');
+		}
+	?>
+	<?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 	<?php echo $form->errorSummary($model); ?>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>255)); ?>
 	<?php echo $form->textFieldRow($model,'location',array('class'=>'span5','maxlength'=>255)); ?>
 	<?php echo $form->textAreaRow($model,'description',array('class'=>'span8', 'rows'=>5, 'maxlength'=>8192)); ?>
@@ -50,47 +56,6 @@ $('#btn-add-user').click(function(){
 				<div id="onetimeprop"><input style="height:20px;" id="publishDate" type="datetime-local" name="appointments[]" class="datetime"> <br/></div>
 		</div>
 	</div>
-
-
-<!--
-	<div id="userinvitations">
-		Invite users 
-		<?php $this->widget('bootstrap.widgets.TbButton', array(
-					'label'=>'+',
-					'type'=>'info', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-					'size'=>'mini', // null, 'large', 'small' or 'mini'
-					'htmlOptions'=>array('id'=>'btn-add-user')
-					)); ?>
-		<br/>
-
-		<div id="userinvs">
-			<div id="oneuser">
-				<input style="height:20px;" type="textfield" name="users[]">  <br/>
-			</div>
-		</div>
-	</div>
--->
-
-<?php 
-/*	
-	$this->widget('zii.widgets.jui.CJuiDatePicker',array(
-				'name'=>'publishDate',
-				// additional javascript options for the date picker plugin
-				'options'=>array(
-					'showAnim'=>'fold',
-					),
-				'htmlOptions'=>array(
-					'style'=>'height:20px;'
-					),
-				));
-
-*/
-?>
- 
- <!--  No need for host id, it is the current users id.	
- 		<?php echo $form->textFieldRow($model,'hostid',array('class'=>'span5')); ?> 
- -->
-
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
