@@ -31,7 +31,7 @@ class EventController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'delete', 'organized', 'invited', 'invite'),
+				'actions'=>array('create','update', 'delete', 'organized', 'invited', 'invite', 'accept'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -83,6 +83,43 @@ class EventController extends Controller
 			'dataProvider' => $dataProvider
 			));
 	}
+
+	/**
+	 * Shows the form for accepting (actually rejecting should be possible)
+	 * an event, which the user been invited to.
+	 */
+	public function actionAccept($id)
+	{
+		// TODO: check if authenticated (got invited to this event)
+		$userid = Yii::app()->user->getId(); 
+		$event = Event::model()->findByPk($id); 
+
+		if(isset($_POST['appointments'])){
+			// todo: very inefficient!!! need a better solution
+			AppointmentArrangement::model()->deleteAll('eventid=:eventid AND userid=:userid', array(':eventid'=>$id, ':userid'=>$userid));
+			foreach($_POST['appointments'] as $aid){ // these are the appointments, the user has checked
+				$aa = new AppointmentArrangement;
+				$aa->eventid = $id;
+				$aa->userid = $userid;
+				$aa->terminid = $aid;
+				$aa->save();
+			}
+
+			UserEvent::model()->deleteAll('eventid=:eventid AND userid=:userid', array(':eventid'=>$id, ':userid'=>$userid));
+			$ue = new UserEvent;
+			$ue->userid = $userid;
+			$ue->eventid = $id;
+			$ue->signedup = 1;
+			$ue->save();
+
+			$this->redirect(array('view', 'id'=>$id));
+		}
+
+		$this->render('accept', array(
+					'model' => $event,
+					));
+	}
+
 
 	/**
 	 * Shows a form for the user invitations.
