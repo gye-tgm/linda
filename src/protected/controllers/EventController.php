@@ -118,7 +118,7 @@ class EventController extends Controller
 			UserEvent::model()->deleteAll('eventid=:eventid AND userid=:userid', array(':eventid'=>$id, ':userid'=>$userid));
 			$ue = new UserEvent;
 			$ue->userid = $userid;
-			$ue->event = $id;
+			$ue->eventid = $id;
 			$ue->signedup = 1;
 			$ue->save();
 
