@@ -31,8 +31,6 @@ $this->menu=array(
 <?php 
 foreach ($comment as $com)
         {
-        //echo "<b>" . CHtml::encode($com->getAttributeLabel('id')) . "</b>: ";
-        //echo CHtml::encode($com->id) . "</br>";
         echo "<b>" . CHtml::encode($com->getAttributeLabel('userid')) . "</b>: ";
         echo CHtml::encode($com->userid) . "</br>";
         echo "<b>" . CHtml::encode($com->getAttributeLabel('text')) . "</b>: ";
@@ -49,7 +47,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 <fieldset> 
     <legend>New Comment</legend>
 
-	<?php echo $form->textAreaRow($test, 'text', array('class'=>'span5','maxlength'=>255)); ?>
+	<?php echo $form->textAreaRow($test, 'text', array('class'=>'span5','maxlength'=>255)); //Persistence missing?>
 
 </fieldset>
 	<div class="form-actions">
