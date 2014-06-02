@@ -14,9 +14,14 @@ $this->menu=array(
 <h1>Events</h1>
 
 <p>
-Howdy! Check out the events you have organized or the events you've been invited to. </br>
-Or you can host your own event! </br>
+Howdy! On the right hand side you can see a navigation bar. 
+Check out the events you have organized or the events you've been invited to. </br>
+Or you can host your own event!
+</p>
 
+<p>
+Have fun!
+</br>
 <?php
 
 require dirname(__FILE__).'/../../extensions/rfreebern/Giphy.php';
