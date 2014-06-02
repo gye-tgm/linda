@@ -38,6 +38,10 @@ return array(
 				'bootstrap'=>array(
 					'class'=>'bootstrap.components.Bootstrap',
 				),
+
+				'fixture'=>array(
+					'class'=>'system.test.CDbFixtureManager',
+					),
 				'user'=>array(
 					// enable cookie-based authentication
 					'allowAutoLogin'=>true,
