@@ -4,13 +4,38 @@ $this->breadcrumbs=array(
 	$model->name,
 );
 
+$userid=Yii::app()->user->getId();
+$user=User::model()->findByPk($userid);
+
 $this->menu=array(
-	array('label'=>'List Event','url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Participant Options'),
 	array('label'=>'Create Event','url'=>array('create'),'icon'=>'plus'),
-	array('label'=>'Update Event','url'=>array('update','id'=>$model->id),'icon'=>'refresh'),
-	array('label'=>'Delete Event','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?'),'icon'=>'icon-trash'),
-	array('label'=>'Manage Event','url'=>array('admin'),'icon'=>'pencil'),
+	array('label'=>'List Event','url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Invited Events', 'url'=>array('invited'),'icon'=>'user'),
+	array('label'=>'Organized Events', 'url'=>array('organized'),'icon'=>'pencil'),
+	
+	//array('label'=>'Organizer Options'),
+	//array('label'=>'Update Event','url'=>array('update','id'=>$model->id),'icon'=>'refresh'),
+	//array('label'=>'Delete Event','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?'),'icon'=>'icon-trash'),
+	//array('label'=>'Admin Options'),
+	//array('label'=>'Manage Event','url'=>array('admin'),'icon'=>'pencil'),
+
 );
+if($userid===$model->hostid){
+	array_push($this->menu, 
+		array('label'=>'Organizer Options'),
+		array('label'=>'Update Event','url'=>array('update','id'=>$model->id),'icon'=>'refresh'),
+		array('label'=>'Delete Event','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?'),'icon'=>'icon-trash')
+		);
+}
+
+if($user->username==='admin'){
+	array_push($this->menu, 
+		array('label'=>'Admin Options'),
+		array('label'=>'Manage Event','url'=>array('admin'),'icon'=>'pencil')
+	);
+}
+
 ?>
 
 <h1>View Event #<?php echo $model->id; ?></h1>
@@ -34,6 +59,8 @@ foreach ($comment as $com)
         $usr=User::model()->findByPk($com->userid);
         echo "<b>" . CHtml::encode($usr->getAttributeLabel('username')) . "</b>: ";
         echo CHtml::encode($usr->getAttribute('username')) . "</br>";
+        echo "<b>" . CHtml::encode($com->getAttributeLabel('time')) . "</b>: ";
+        echo CHtml::encode($com->time) . "</br></br>";
         echo "<b>" . CHtml::encode($com->getAttributeLabel('text')) . "</b>: ";
         echo CHtml::encode($com->text) . "</br></br>";
 }?>
