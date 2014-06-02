@@ -6,12 +6,24 @@ $this->breadcrumbs=array(
 		'Events'=>array('index'),
 		'Organized',
 		);
+		
+$userid=Yii::app()->user->getId();
+$user=User::model()->findByPk($userid);
 
 $this->menu=array(
-		array('label'=>'Create Event', 'url'=>array('create'),'icon'=>'plus'),
-		array('label'=>'Invited Events', 'url'=>array('invited'),'icon'=>'user'),
-		array('label'=>'List Events', 'url'=>array('index'),'icon'=>'book'),
-		);
+	array('label'=>'User Options'),
+	array('label'=>'Create Event','url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'List Event','url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Invited Events', 'url'=>array('invited'),'icon'=>'user'),
+	array('label'=>'Organized Events', 'url'=>array('organized'),'icon'=>'pencil'),
+);
+
+if($user->username==='admin'){
+	array_push($this->menu, 
+		array('label'=>'Admin Options'),
+		array('label'=>'Manage Event','url'=>array('admin'),'icon'=>'pencil')
+	);
+}
 ?>
 
 <h1>Organized Events</h1>
