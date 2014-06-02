@@ -20,7 +20,7 @@ if(isset($model)){
 	}
 }
 
-if($user->username==='admin'){
+if(isset($user) && $user->username==='admin'){
 	array_push($this->menu, 
 		array('label'=>'Admin Options'),
 		array('label'=>'Manage Event','url'=>array('admin'),'icon'=>'pencil')
