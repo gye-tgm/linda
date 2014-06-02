@@ -1,5 +1,3 @@
-USE linda;
-
 -- Inserts for testing
 
 INSERT INTO User(username, password) VALUES

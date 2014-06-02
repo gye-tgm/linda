@@ -21,3 +21,4 @@ if [ ! -d $HOME/opt ]; then
 
 				mysql -u root < /vagrant/data/all.sql 
 fi
+

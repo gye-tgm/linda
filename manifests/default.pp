@@ -12,5 +12,5 @@ package { "php5-cli": }
 package { "php5-mysql": }
 package { "libapache2-mod-php5":}
 package { "mysql-server": }
-
+package { "phpunit": }
 
