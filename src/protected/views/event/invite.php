@@ -24,13 +24,13 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 		'columns'=>array(
 			array('name'=>'username', 'header'=>'Name'),
 			array('value'=>'"accepted"', 'header'=>'Appointment 1'),
-			array(
+			/*array(
 				'asExpression'=>function($data, $row){
 					return array(
-					'url' => CHtml::createUrl('accept', array('id'=>$data->id)),
+					'url' => CHtml::createUrl('accept', array('id'=>$data->id)));
 				}
-			),
-		));
+			), */
+		)));
 ?>
 <?php
 $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
