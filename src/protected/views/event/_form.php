@@ -70,7 +70,16 @@ $('#btn-add-user').click(function(){
 						'url'=>$this->createUrl('invite', array('id'=>$model->id)),
 						'label'=>'Invite users'
 						));
+			$this->widget('bootstrap.widgets.TbButton', array(
+						'buttonType'=>'link',
+						'type'=>'danger',
+						'url'=>$this->createUrl('fix', array('id'=>$model->id)),
+						'label'=>'Fix'
+						));
 		}
+
+
+
 		?>
 	</div>
 

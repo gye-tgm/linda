@@ -12,3 +12,7 @@ require_once('_options.php');
 
 <?php echo $this->renderPartial('_useraccepted', array('model'=>$model)); ?>
 
+<?php
+
+?>
+
