@@ -120,13 +120,15 @@ class Event extends CActiveRecord
 
 	/**
 	 * In percentage (integer) how many particpants have already
-	 * signed up for the event.
-	 * @param integer $id the id of the event
-	 * @return the progress in percent 
+	 * signed up for the event out of the number of partipants which have been invited.
+	 * If no users have been invited then 0 will be returned, since the progress is zero. 
+	 *  
+	 * @param Integer $id the id of the event
+	 * @return Integer the progress in percent 
 	 */
 	public static function calcProgress($id)
 	{
-		// todo: unittest
+		// todo: Unit test is missing
 		$available=UserEvent::model()->count('eventid=:eventid', array('eventid'=>$id));
 		$set=UserEvent::model()->count('eventid=:eventid and signedup=1', array('eventid'=>$id));
 		if($available == 0)

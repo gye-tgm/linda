@@ -95,23 +95,33 @@ class UserEvent extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public static function createInvitation($userid, $eventid)
+	/**
+	 * Creates an invitation for a given user to a specific event. This means
+	 * there will be a new entry of UserEvent in the database. This function
+	 * returns false if there exists already an invitation of this type.
+	 * The user also gets notified, if setted in the parameter.
+	 * 
+	 * @param Integer $userid the id of the user
+	 * @param Integer $eventid the id of the event
+	 * @param Boolean $notify if the user gets notified
+	 * @return Boolean if the creation was successful 
+	 */ 
+	public static function createInvitation($userid, $eventid, $notify = true)
 	{
-		// Create one in the table, 
-		$inv = self::model()->findByAttributes(array("userid" => $userid, "eventid" => $eventid));
-		if($inv !== null){ // this already exists in the database.
+		// Find one in the table.
+		$invitation = self::model()->findByPk(array("userid" => $userid, "eventid" => $eventid));
+		if($invitation !== null){ // this already exists in the database.
 			return false;
 		}
-		
-		$inv = new UserEvent;
-		$inv->userid = $userid;
-		$inv->eventid = $eventid;
-		$inv->signedup = 0;
-		if(!$inv->save()){
-			// todo: appropriate message
+		$invitation = new UserEvent;
+		$invitation->userid = $userid;
+		$invitation->eventid = $eventid;
+		$invitation->signedup = 0;
+		if(!$invitation->save()){
+			// the errors can be called via the getError() method.
+			return false;
 		}
-		// NotificationUser::createNotification();
-		// todo: notify invited user
+		NotificationUser::createNotification();
 		return true;
 	}
 }

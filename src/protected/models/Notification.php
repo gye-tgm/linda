@@ -120,9 +120,15 @@ class Notification extends CActiveRecord
 	}
 
 	/**
-	*  
+	* "Translates" the message with the information of a given notification because
+	* the user should not intepret the message by giving him/her two integers.
+	* @param int $eventid the id of the dependent event
+	* @param int $type the type of the event, where the type can be compared with the
+	* constants (e.g. EVENT_INVITATION, EVENT_EDITED), which have been declared in this class.
+	* @return String the human readable message for the specific event.
+	* todo: needing a test
 	*/
-	public static function translate($eventid,$type){
+	public static function translate($eventid, $type){
 		$name = Event::model()->findByPk($eventid)->name;
 		if($type == Notification::EVENT_INVITATION){
 			return "You've been invited to $name.";
@@ -138,4 +144,20 @@ class Notification extends CActiveRecord
 			return "The organizer has made fixed arrangemnts for $name";
 		}
 	}
+
+	/**
+	 * Creates a notification and returns it. 
+	 * @param integer $type the type of the notification
+	 * @param integer $eventid the id of the dependent id
+	 * @return Notification the notification that has been created 
+	 */
+	public static function createNotification($type, $eventid){
+		$notification = new Notification; 
+		$notification->type = $type;
+		$notification->eventid = $eventid;
+		$notification->time = date('Y-m-d H:i:s');
+		$notification->save();
+		return $notification;
+	}
+
 }
