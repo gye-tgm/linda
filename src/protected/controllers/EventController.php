@@ -168,11 +168,22 @@ class EventController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$newcom=new Comment;
+		
+		if(isset($_POST['Comment'])){
+			$newcom->userid = Yii::app()->user->getId();
+			$newcom->eventid = $id;
+			$newcom->time=date('Y-m-d');
+			$newcom->text=$_POST['Comment']['text'];
+			$newcom->save();
+		}
+		
 		$comment=Comment::model()->findAllByAttributes(array('eventid'=>$id));
 		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 			'comment'=>$comment,
+			'newcom'=>$newcom,
 		));
 	}
 

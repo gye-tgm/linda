@@ -31,14 +31,14 @@ $this->menu=array(
 <?php 
 foreach ($comment as $com)
         {
-        echo "<b>" . CHtml::encode($com->getAttributeLabel('userid')) . "</b>: ";
-        echo CHtml::encode($com->userid) . "</br>";
+        $usr=User::model()->findByPk($com->userid);
+        echo "<b>" . CHtml::encode($usr->getAttributeLabel('username')) . "</b>: ";
+        echo CHtml::encode($usr->getAttribute('username')) . "</br>";
         echo "<b>" . CHtml::encode($com->getAttributeLabel('text')) . "</b>: ";
         echo CHtml::encode($com->text) . "</br></br>";
 }?>
 
 <?php /** @var BootActiveForm $form */
-$test = new Comment;
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'horizontalForm',
     'type'=>'horizontal',
@@ -47,11 +47,11 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 <fieldset> 
     <legend>New Comment</legend>
 
-	<?php echo $form->textAreaRow($test, 'text', array('class'=>'span5','maxlength'=>255)); //Persistence missing?>
+	<?php echo $form->textAreaRow($newcom, 'text', array('class'=>'span5','maxlength'=>255)); //Persistence missing?>
 
 </fieldset>
 	<div class="form-actions">
-	    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>'Submit')); ?>
+	    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>'Create')); ?>
 	    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Reset')); ?>
 	</div>
 <?php $this->endWidget(); ?>
