@@ -3,16 +3,16 @@
 foreach($model->users as $user){
 	$row['id'] = $user->username;
 	foreach($model->appointments as $app){
-		$row[strval($app->id)] = AppointmentArrangement::model()->count('userid=:userid and terminid=:terminid',
+		$stat = AppointmentArrangement::model()->count('userid=:userid and terminid=:terminid',
 				array('userid'=>$user->id,
 							'terminid'=>$app->id,
 							));
+		$row[strval($app->id)] = ($stat ? 'Yes':'No');
 	}
 	$termin[] = $row; 
 }
 if(isset($termin)){
-	var_dump($termin);
-
+	// var_dump($termin);
 	$gridDataProvider = new CArrayDataProvider($termin);
 	$columns[] = 	array('name'=>'id', 'header'=>'User');
 	foreach($model->appointments as $app){

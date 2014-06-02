@@ -15,5 +15,6 @@ require_once('_options.php');
 
 <h1>Accept Event</h1>
 
+<?php echo $this->renderPartial('_useraccepted', array('model'=>$model)); ?>
 <?php echo $this->renderPartial('_accept', array('model'=>$model)); ?>
 			
