@@ -31,7 +31,7 @@ class EventController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'delete', 'organized', 'invited', 'invite', 'accept'),
+				'actions'=>array('create','update', 'delete', 'organized', 'invited', 'invite', 'accept', 'fix'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -118,6 +118,15 @@ class EventController extends Controller
 		$this->render('accept', array(
 					'model' => $event,
 					));
+	}
+
+	public function actionFix($id){
+		// todo: check if authenticated (if he owns the event)
+		$model = Event::model()->findByPk($id);
+		$this->render('fix', array(
+						'model' => $model,
+						)
+					);
 	}
 
 
