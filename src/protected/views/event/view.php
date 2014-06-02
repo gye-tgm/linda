@@ -20,6 +20,7 @@ require_once('_options.php');
 		'hostid',
 	),
 )); ?>
+<?php echo $this->renderPartial('_useraccepted', array('model'=>$model)); ?>
 
 <h3>Comments</h3>
 
@@ -41,10 +42,11 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'type'=>'horizontal',
 )); ?>
 
+
 <fieldset> 
     <legend>New Comment</legend>
 
-	<?php echo $form->textAreaRow($newcom, 'text', array('class'=>'span5','maxlength'=>255)); //Persistence missing?>
+	<?php echo $form->textAreaRow($newcom, 'text', array('class'=>'span5','maxlength'=>255));?>
 
 </fieldset>
 	<div class="form-actions">
