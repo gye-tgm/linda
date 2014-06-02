@@ -4,11 +4,7 @@ $this->breadcrumbs=array(
 	'Create',
 );
 
-$this->menu=array(
-	array('label'=>'List Events','url'=>array('index'), 'icon'=>'book'),
-	array('label'=>'Organized Events','url'=>array('organized'),'icon'=>'pencil'),
-	array('label'=>'Create Event','url'=>array('create'),'icon'=>'plus'),
-);
+require_once('_options.php');
 ?>
 
 <h1>Create Event</h1>

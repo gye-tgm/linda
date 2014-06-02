@@ -7,23 +7,7 @@ $this->breadcrumbs=array(
 		'Organized',
 		);
 		
-$userid=Yii::app()->user->getId();
-$user=User::model()->findByPk($userid);
-
-$this->menu=array(
-	array('label'=>'User Options'),
-	array('label'=>'Create Event','url'=>array('create'),'icon'=>'plus'),
-	array('label'=>'List Event','url'=>array('index'),'icon'=>'book'),
-	array('label'=>'Invited Events', 'url'=>array('invited'),'icon'=>'user'),
-	array('label'=>'Organized Events', 'url'=>array('organized'),'icon'=>'pencil'),
-);
-
-if($user->username==='admin'){
-	array_push($this->menu, 
-		array('label'=>'Admin Options'),
-		array('label'=>'Manage Event','url'=>array('admin'),'icon'=>'pencil')
-	);
-}
+require_once('_options.php');
 ?>
 
 <h1>Organized Events</h1>

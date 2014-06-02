@@ -5,12 +5,7 @@ $this->breadcrumbs=array(
 	'Update',
 );
 
-$this->menu=array(
-	array('label'=>'List Event','url'=>array('index'),'icon'=>'book'),
-	array('label'=>'Create Event','url'=>array('create'),'icon'=>'plus'),
-	array('label'=>'View Event','url'=>array('view','id'=>$model->id),'icon'=>'icon-eye-open'),
-	array('label'=>'Manage Event','url'=>array('admin'),'icon'=>'pencil'),
-);
+require_once('_options.php');
 ?>
 
 <h1>Update Event <?php echo $model->id; ?></h1>

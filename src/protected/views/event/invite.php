@@ -9,10 +9,7 @@ $this->breadcrumbs=array(
 		'Invite',
 		);
 
-$this->menu=array(
-		array('label'=>'Create Event', 'url'=>array('create'),'icon'=>'plus'),
-		array('label'=>'Manage Event', 'url'=>array('admin'),'icon'=>'pencil'),
-		);
+require_once('_options.php');
 ?>
 
 <h1>Manage invitations</h1>
@@ -34,8 +31,11 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 ?>
 <?php
 $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+
 			'id'=>'user-form',
+
 			'enableAjaxValidation'=>false,
+
 			));
 ?>
 
@@ -44,9 +44,13 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 
 </br>
 <?php 	$this->widget('bootstrap.widgets.TbButton', array(
+
 				'buttonType'=>'submit',
+
 				'type'=>'Invite',
+
 				'label'=>'Invite user'
+
 				)); ?>
 
 <?php $this->endWidget(); ?>
