@@ -168,8 +168,13 @@ class EventController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$newcom=new Comment;
+		Yii::app()->user->returnUrl=array('/event/view&id='.$id);
 		
+		
+		$newcom=new Comment;
+		if(isset($_POST['yt0'])){
+			echo 'Test';
+		}
 		if(isset($_POST['Comment'])){
 			$newcom->userid = Yii::app()->user->getId();
 			$newcom->eventid = $id;

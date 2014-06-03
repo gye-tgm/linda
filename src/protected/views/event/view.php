@@ -24,24 +24,33 @@ require_once('_options.php');
 
 <h3>Comments</h3>
 
-<?php 
-foreach ($comment as $com)
-        {
+<?php
+$userid=Yii::app()->user->getId();
+$user=User::model()->findByPk($userid);
+foreach ($comment as $com){
         $usr=User::model()->findByPk($com->userid);
         echo "<b>" . CHtml::encode($usr->getAttributeLabel('username')) . "</b>: ";
         echo CHtml::encode($usr->getAttribute('username')) . "</br>";
         echo "<b>" . CHtml::encode($com->getAttributeLabel('time')) . "</b>: ";
-        echo CHtml::encode($com->time) . "</br></br>";
+        echo CHtml::encode($com->time) . "</br>";
         echo "<b>" . CHtml::encode($com->getAttributeLabel('text')) . "</b>: ";
-        echo CHtml::encode($com->text) . "</br></br>";
-}?>
+        echo CHtml::encode($com->text) . "</br>";
+        if(isset($user) && $user->username==='admin' || $userid===$model->hostid){
+		$this->widget('bootstrap.widgets.TbButton', array(
+    		'label'=>'Delete',
+    		'type'=>'danger', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+    		'size'=>'mini', // null, 'large', 'small' or 'mini'
+    		'url'=>CController::createUrl('comment/delete', $params=array('id'=> $com->id, 'returnUrl'=>array('event/view','id'=>$model->id))),
+		));}
+		echo "</br></br>";
+	}
+?>
 
 <?php /** @var BootActiveForm $form */
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'horizontalForm',
     'type'=>'horizontal',
 )); ?>
-
 
 <fieldset> 
     <legend>New Comment</legend>
