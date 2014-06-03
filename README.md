@@ -47,6 +47,11 @@ Die Seite kann man am Webbrowser mit localhost:1234/src sehen.
 
 Die zu bearbeitenden Files liegen im src/protected/ Ordner, wobei view der Ordner für die Website-Interface-Designer (Medientechniker) ist. 
 
+
+Referenzen
+==========
 [1] http://www.vagrantup.com/downloads
+
 [2] http://docs.seleniumhq.org/download/ 
+
 [3] https://addons.mozilla.org/en-US/firefox/addon/selenium-ide-php-formatters/
