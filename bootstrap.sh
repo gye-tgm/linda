@@ -56,4 +56,4 @@ mysql -u root < /vagrant/data/all.sql
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Selenium server start
-DISPLAY=:1 xvfb-run java -jar $OPT/selenium/selenium -Dwebdriver.chrome.driver=$OPT/chromedriver &
+DISPLAY=:1 xvfb-run java -jar $OPT/selenium/selenium & # -Dwebdriver.chrome.driver=$OPT/chromedriver &
