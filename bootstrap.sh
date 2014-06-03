@@ -40,9 +40,10 @@ pear install pear.phpunit.de/PHPUnit
 pear install pear.phpunit.de/PHPUnit_Selenium
 
 # Downloading the web driver for Chrome Selenium
-wget -nc http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
-unzip chromedriver_linux64.zip
-
+if [ ! -f $OPT/chromedriver ]; then 
+	wget -nc http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
+	unzip chromedriver_linux64.zip
+fi
 chown -R www-data $OPT
 chgrp -R www-data $OPT
 
@@ -55,6 +56,4 @@ mysql -u root < /vagrant/data/all.sql
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Selenium server start
-DISPLAY=:1 xvfb-run java -jar $OPT/selenium/selenium -Dwebdriver.chrome.driver=$OPT/chromedriver
-
-
+DISPLAY=:1 xvfb-run java -jar $OPT/selenium/selenium -Dwebdriver.chrome.driver=$OPT/chromedriver &
