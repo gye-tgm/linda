@@ -19,28 +19,32 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+	
 		<?php echo $form->labelEx($model,'eventid'); ?>
 		<?php echo $form->textField($model,'eventid'); ?>
 		<?php echo $form->error($model,'eventid'); ?>
-	</div>
+	
 
-	<div class="row">
+	
 		<?php echo $form->labelEx($model,'type'); ?>
 		<?php echo $form->textField($model,'type'); ?>
 		<?php echo $form->error($model,'type'); ?>
-	</div>
+	
 
-	<div class="row">
+	
 		<?php echo $form->labelEx($model,'time'); ?>
 		<?php echo $form->textField($model,'time'); ?>
 		<?php echo $form->error($model,'time'); ?>
-	</div>
+	
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
+		<p>
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+    		'label'=>$model->isNewRecord ? 'Create' : 'Save',
+    		'type'=>'primary',
+    		'size'=>'null',
+		)); ?>
+	
 
 <?php $this->endWidget(); ?>
 
-</div><!-- form -->
+</div>
