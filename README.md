@@ -32,7 +32,7 @@ Firefox
 Wer Firefox nicht hat, bitte diesen zu installieren. Danach sind folgende Add Ons bzw. Extensions zu installieren.
 
 * Selenium IDE [2]
-* PHP Formatter [3] (damit man den Testcase zu PHP Code exportieren kann)
+* PHP Formatter (damit man den Testcase zu PHP Code exportieren kann) [3] 
 
 Workflow
 ========
