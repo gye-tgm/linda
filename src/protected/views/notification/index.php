@@ -6,10 +6,7 @@ $this->breadcrumbs=array(
 	'Notifications',
 );
 
-$this->menu=array(
-	array('label'=>'Create Notification', 'url'=>array('create'),'icon'=>'plus'),
-	array('label'=>'Manage Notification', 'url'=>array('admin'),'icon'=>'pencil'),
-);
+require_once('_options.php');
 ?>
 
 <h1>Notifications</h1>

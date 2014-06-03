@@ -23,8 +23,8 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 			array('name'=>'location', 'header'=>'Location'),
 			array('header'=>'Progress', 
 				'class'=>'application.components.BootProgressColumn',
-				'animated' => true,
-				'striped' => true,
+				'animated' => false,
+				'striped' => false,
 				'value' => 'Event::calcProgress($data->id)', // TODO: acceptedUsers / invitedUsers
 			),
 			array(

@@ -61,11 +61,22 @@ class EventController extends Controller
 			// We assign the host id of the current user to this event.
 			$model->hostid = Yii::app()->user->getId();	
 			$model->attributes=$_POST['Event'];
+			
 
 			// If a problem happens at here, then we will rerender the form 
 			// for the next render.
-			if($model->save())
+			if($model->save()){
+				foreach($_POST['appointments'] as $value){
+					if(!empty($value)){
+						$time = strtotime($value);
+						$appointment = new Appointment;
+						$appointment->eventid=$model->id;
+						$appointment->time=date('Y-m-d H:i:s', $time);
+						$appointment->save();
+						}
+					}
 				$this->redirect(array('view','id'=>$model->id));
+				}
 		}
 
 		$this->render('create',array(
