@@ -157,7 +157,6 @@ class EventController extends Controller
 			// First check if there is already an invitation
 			if(!UserEvent::createInvitation($user->id, $id)){
 				// var_dump($user);
-				// todo: print error 
 				$usermodel->addError('original_asset_number', 'The user can not be invited twice');
 			} else {
 				NotificationUser::createNotificationForUser(Notification::EVENT_INVITATION, $id, $user->id);
