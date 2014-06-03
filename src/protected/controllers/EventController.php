@@ -147,6 +147,7 @@ class EventController extends Controller
 			if(!UserEvent::createInvitation($user->id, $id)){
 				var_dump($user);
 			} else {
+				NotificationUser::createNotificationForUser(Notification::EVENT_INVITATION, $id, $user->id);
 			}
 		}
 		

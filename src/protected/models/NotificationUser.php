@@ -100,7 +100,7 @@ class NotificationUser extends CActiveRecord
 	 * @return 
 	 */
 	public static function createNotificationForUsers($type, $eventid, array $userids){
-		$notification = NotificationUser::createNotification();
+		$notification = Notification::createNotification($type, $eventid);
 		foreach($userids as $userid){
 			$nu = new NotificationUser;
 			$nu->notificationid = $notification->id;
@@ -113,6 +113,6 @@ class NotificationUser extends CActiveRecord
 	 * Creates a notification for a single user.
 	 */
 	public static function createNotificationForUser($type, $eventid, $user){
-		createNotificationForUser($type, $eventid, array($user));
+		self::createNotificationForUsers($type, $eventid, array($user));
 	}
 }

@@ -121,7 +121,6 @@ class UserEvent extends CActiveRecord
 			// the errors can be called via the getError() method.
 			return false;
 		}
-		NotificationUser::createNotification();
 		return true;
 	}
 }
