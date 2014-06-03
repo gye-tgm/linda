@@ -10,8 +10,12 @@ package { "apache2": }
 package { "php5": }
 package { "php5-cli": }
 package { "php5-mysql": }
+package { "php5-curl": }
 package { "libapache2-mod-php5":}
 package { "mysql-server": }
-package { "phpunit": }
+package { "firefox": }
+# package { "phpunit": }
 package { "openjdk-7-jre": }
+package { "unzip": }
+package { "xvfb": }
 
