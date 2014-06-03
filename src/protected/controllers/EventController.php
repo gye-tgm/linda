@@ -84,6 +84,10 @@ class EventController extends Controller
 		));
 	}
 
+
+	/**
+	 * Shows the organized events of the current logged in user.
+	 */
 	public function actionOrganized()
 	{
 		$userid = Yii::app()->user->getId(); 
@@ -98,6 +102,7 @@ class EventController extends Controller
 	/**
 	 * Shows the form for accepting (actually rejecting should be possible)
 	 * an event, which the user been invited to.
+	 * @param integer $id the id of th event.
 	 */
 	public function actionAccept($id)
 	{
@@ -131,6 +136,11 @@ class EventController extends Controller
 					));
 	}
 
+
+	/**
+	 * Shows the formula for fixing the appointments as an organizer.
+	 * @param integer $id the id of the event
+	 */
 	public function actionFix($id){
 		// todo: check if authenticated (if he owns the event)
 		$model = Event::model()->findByPk($id);
@@ -143,6 +153,7 @@ class EventController extends Controller
 
 	/**
 	 * Shows a form for the user invitations.
+	 * @param integer $id the id of the event.
 	 */
 	public function actionInvite($id)
 	{
@@ -203,6 +214,9 @@ class EventController extends Controller
 		));
 	}
 
+	/**
+	 * Shows the invitations of the currently logged in user.
+	 */
 	public function actionInvited()
 	{
 		$id = Yii::app()->user->getId(); 
@@ -271,7 +285,7 @@ class EventController extends Controller
 	}
 
 	/**
-	 * Lists all models.
+	 * Shows the index page and telling the user about the navigation.
 	 */
 	public function actionIndex()
 	{
