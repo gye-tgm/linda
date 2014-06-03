@@ -31,6 +31,10 @@ $('#btn-add-user').click(function(){
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>255)); ?>
 	<?php echo $form->textFieldRow($model,'location',array('class'=>'span5','maxlength'=>255)); ?>
 	<?php echo $form->textAreaRow($model,'description',array('class'=>'span8', 'rows'=>5, 'maxlength'=>8192)); ?>
+	<?php echo $form->radioButtonListRow($model, 'eventtype', array(
+				'Standard Event',
+				'Block Event',
+				)); ?>
 <br/>
 	<div id="timeproposal">
 		Time proposals 

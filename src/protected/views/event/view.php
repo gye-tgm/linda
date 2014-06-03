@@ -8,16 +8,22 @@ require_once('_options.php');
 
 ?>
 
-<h1>View Event #<?php echo $model->id; ?></h1>
+<h1><?php echo $model->name; ?></h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
 		'name',
 		'location',
 		'description',
-		'hostid',
+		array(
+			'label'=>'Organizer',
+			'value'=>User::model()->findByPk($model->hostid)->username,
+		),
+		array(
+			'label'=>'Event type',
+			'value'=> (($model->eventtype == Event::STANDARD) ? 'Standard' : 'OneToOne'),
+		),
 	),
 )); ?>
 <?php echo $this->renderPartial('_useraccepted', array('model'=>$model)); ?>

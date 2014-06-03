@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'Event':
  * @property integer $id
  * @property string $name
+ * @property integer $eventtype
  * @property string $location
  * @property string $description
  * @property integer $hostid
@@ -20,6 +21,8 @@
  */
 class Event extends CActiveRecord
 {
+	const STANDARD = 0;
+	const ONETOONE = 1;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -36,13 +39,13 @@ class Event extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, hostid', 'required'),
-			array('hostid', 'numerical', 'integerOnly'=>true),
+			array('name, eventtype, hostid', 'required'),
+			array('eventtype, hostid', 'numerical', 'integerOnly'=>true),
 			array('name, location', 'length', 'max'=>255),
 			array('description', 'length', 'max'=>8192),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, location, description, hostid', 'safe', 'on'=>'search'),
+			array('id, name, location, eventtype, description, hostid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,6 +75,7 @@ class Event extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'eventtype' => 'Event type',
 			'location' => 'Location',
 			'description' => 'Description',
 			'hostid' => 'Hostid',
@@ -98,6 +102,7 @@ class Event extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('eventtype',$this->eventtype);
 		$criteria->compare('location',$this->location,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('hostid',$this->hostid);
