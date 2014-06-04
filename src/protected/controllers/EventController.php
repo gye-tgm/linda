@@ -128,6 +128,9 @@ class EventController extends Controller
 			$ue->signedup = 1;
 			$ue->save();
 
+			if(Event::calcProgress($id) >= 100){
+				NotificationUser::createNotificationForUser(Notification::EVENT_INVITATION, $id, $event->hostid);
+			}
 			$this->redirect(array('view', 'id'=>$id));
 		}
 
@@ -281,8 +284,10 @@ class EventController extends Controller
 			$this->loadModel($id)->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_GET['ajax']))
+			if(!isset($_GET['ajax'])) {
+				NotificationUser::createNotificationForUser(Notification::EVENT_DELETED, $id, $user->id);
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			}
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
