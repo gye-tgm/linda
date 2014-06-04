@@ -8,15 +8,17 @@
 rm -rf /var/www
 ln -fs /vagrant /var/www
 
+
+
 # Get Yii from official website if not already done.
 HOME=/home/vagrant
 YII=$HOME/yii
 OPT=$HOME/opt
 
+mkdir $OPT
 # Yii
-
 if [ ! -d $OPT/yii ]; then
-	mkdir -p $OPT/yii
+	cd $OPT
 	wget https://github.com/yiisoft/yii/releases/download/1.1.14/yii-1.1.14.f0fee9.tar.gz
 
 	tar xf yii-1.1.14.f0fee9.tar.gz
@@ -49,11 +51,13 @@ cp /vagrant/composer.json .
 php composer.phar install
 export PATH=$PATH:$HOME/vendor/bin
 
+# MySQL Database setup
+mysql -u root < /vagrant/data/all.sql 
+
 chown -R www-data $OPT
 chgrp -R www-data $OPT
 
-# MySQL Database setup
-mysql -u root < /vagrant/data/all.sql 
+echo "export PATH=$PATH:$HOME/vendor/bin" >> $HOME/.bashrc
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # SETUP
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
