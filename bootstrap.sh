@@ -45,7 +45,7 @@ fi
 
 # Get Composer
 cd $HOME
-wget https://getcomposer.org/installer
+wget -nc https://getcomposer.org/installer
 php installer
 cp /vagrant/composer.json .
 php composer.phar install

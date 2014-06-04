@@ -128,6 +128,9 @@ class EventController extends Controller
 			$ue->signedup = 1;
 			$ue->save();
 
+			if(Event::calcProgress($id) >= 100){
+				NotificationUser::createNotificationForUser(Notification::EVENT_INVITATION, $id, $event->hostid);
+			}
 			$this->redirect(array('view', 'id'=>$id));
 		}
 
@@ -165,12 +168,16 @@ class EventController extends Controller
 			$username = $_POST['User']['username'];
 			// Username is unique
 			$user = User::model()->findByAttributes(array('username'=>$username));
-			// First check if there is already an invitation
-			if(!UserEvent::createInvitation($user->id, $id)){
-				// var_dump($user);
-				$usermodel->addError('original_asset_number', 'The user can not be invited twice');
+			if(isset($user)){
+				// First check if there is already an invitation
+				if(!UserEvent::createInvitation($user->id, $id)){
+					// var_dump($user);
+					$usermodel->addError('original_asset_number', 'The user can not be invited twice');
+				} else {
+					NotificationUser::createNotificationForUser(Notification::EVENT_INVITATION, $id, $user->id);
+				}
 			} else {
-				NotificationUser::createNotificationForUser(Notification::EVENT_INVITATION, $id, $user->id);
+				$usermodel->addError('original_asset_number', 'The user does not exist!');
 			}
 		}
 		
@@ -277,8 +284,10 @@ class EventController extends Controller
 			$this->loadModel($id)->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_GET['ajax']))
+			if(!isset($_GET['ajax'])) {
+				NotificationUser::createNotificationForUser(Notification::EVENT_DELETED, $id, $user->id);
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			}
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
