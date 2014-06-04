@@ -9,6 +9,10 @@ return CMap::mergeArray(
 			),
 			'db'=>array(
 				'connectionString'=>'mysql:host=localhost;dbname=lindatest',
+				'emulatePrepare' => true,
+				'username' => 'lindatest',
+				'password' => 'passwd',
+				'charset' => 'utf8',
 			),
 		),
 	)
