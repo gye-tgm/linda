@@ -129,7 +129,7 @@ class EventController extends Controller
 			$ue->save();
 
 			if(Event::calcProgress($id) >= 100){
-				NotificationUser::createNotificationForUser(Notification::EVENT_INVITATION, $id, $event->hostid);
+				NotificationUser::createNotificationForParticipants(Notification::EVENT_INVITATION, $id, $event->hostid);
 			}
 			$this->redirect(array('view', 'id'=>$id));
 		}
@@ -281,11 +281,12 @@ class EventController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
+			
+			NotificationUser::createNotificationForParticipants(Notification::EVENT_DELETED, $id);
 			$this->loadModel($id)->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax'])) {
-				NotificationUser::createNotificationForUser(Notification::EVENT_DELETED, $id, $user->id);
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 			}
 		}
