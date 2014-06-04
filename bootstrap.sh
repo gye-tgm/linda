@@ -34,23 +34,26 @@ if [ ! -d $OPT/selenium ]; then
 fi
 
 # Installing PHPUnit Selenium 
-pear upgrade PEAR
-pear config-set auto_discover 1
-pear install pear.phpunit.de/PHPUnit
-pear install pear.phpunit.de/PHPUnit_Selenium
 
 # Downloading the web driver for Chrome Selenium
-if [ ! -f $OPT/chromedriver ]; then 
-	wget -nc http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
-	unzip chromedriver_linux64.zip
-fi
+# if [ ! -f $OPT/chromedriver ]; then 
+#	wget -nc http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
+# unzip chromedriver_linux64.zip
+# fi
+
+# Get Composer
+cd $HOME
+wget https://getcomposer.org/installer
+php installer
+cp /vagrant/composer.json .
+php composer.phar install
+export PATH=$PATH:$HOME/vendor/bin
+
 chown -R www-data $OPT
 chgrp -R www-data $OPT
 
 # MySQL Database setup
 mysql -u root < /vagrant/data/all.sql 
-
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # SETUP
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
