@@ -84,6 +84,10 @@ class EventController extends Controller
 		));
 	}
 
+
+	/**
+	 * Shows the organized events of the current logged in user.
+	 */
 	public function actionOrganized()
 	{
 		$userid = Yii::app()->user->getId(); 
@@ -98,6 +102,7 @@ class EventController extends Controller
 	/**
 	 * Shows the form for accepting (actually rejecting should be possible)
 	 * an event, which the user been invited to.
+	 * @param integer $id the id of th event.
 	 */
 	public function actionAccept($id)
 	{
@@ -131,6 +136,11 @@ class EventController extends Controller
 					));
 	}
 
+
+	/**
+	 * Shows the formula for fixing the appointments as an organizer.
+	 * @param integer $id the id of the event
+	 */
 	public function actionFix($id){
 		// todo: check if authenticated (if he owns the event)
 		$model = Event::model()->findByPk($id);
@@ -143,6 +153,7 @@ class EventController extends Controller
 
 	/**
 	 * Shows a form for the user invitations.
+	 * @param integer $id the id of the event.
 	 */
 	public function actionInvite($id)
 	{
@@ -154,12 +165,16 @@ class EventController extends Controller
 			$username = $_POST['User']['username'];
 			// Username is unique
 			$user = User::model()->findByAttributes(array('username'=>$username));
-			// First check if there is already an invitation
-			if(!UserEvent::createInvitation($user->id, $id)){
-				// var_dump($user);
-				$usermodel->addError('original_asset_number', 'The user can not be invited twice');
+			if(isset($user)){
+				// First check if there is already an invitation
+				if(!UserEvent::createInvitation($user->id, $id)){
+					// var_dump($user);
+					$usermodel->addError('original_asset_number', 'The user can not be invited twice');
+				} else {
+					NotificationUser::createNotificationForUser(Notification::EVENT_INVITATION, $id, $user->id);
+				}
 			} else {
-				NotificationUser::createNotificationForUser(Notification::EVENT_INVITATION, $id, $user->id);
+				$usermodel->addError('original_asset_number', 'The user does not exist!');
 			}
 		}
 		
@@ -203,6 +218,9 @@ class EventController extends Controller
 		));
 	}
 
+	/**
+	 * Shows the invitations of the currently logged in user.
+	 */
 	public function actionInvited()
 	{
 		$id = Yii::app()->user->getId(); 
@@ -271,7 +289,7 @@ class EventController extends Controller
 	}
 
 	/**
-	 * Lists all models.
+	 * Shows the index page and telling the user about the navigation.
 	 */
 	public function actionIndex()
 	{
