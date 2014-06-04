@@ -27,7 +27,7 @@ require_once('_options.php');
         ),
 		array('name'=>'location','header'=>'Location'),
 		array('name'=>'description','header'=>'Description'),
-		array('name'=>'hostid','header'=>'HostId'),
+		array('value'=>'User::model()->findByPk($data->id)->username','header'=>'Organisator'),
 		array(
             'class'=>'CLinkColumn',
             'label'=>'accept',
