@@ -110,17 +110,22 @@ class EventController extends Controller
 		$userid = Yii::app()->user->getId(); 
 		$event = Event::model()->findByPk($id); 
 
-		if(isset($_POST['appointments'])){
+		if(isset($_POST['yt0'])){
 			// todo: very inefficient!!! need a better solution
+			
+			// This updates the state of the appointment arrangements.
 			AppointmentArrangement::model()->deleteAll('eventid=:eventid AND userid=:userid', array(':eventid'=>$id, ':userid'=>$userid));
-			foreach($_POST['appointments'] as $aid){ // these are the appointments, the user has checked
-				$aa = new AppointmentArrangement;
-				$aa->eventid = $id;
-				$aa->userid = $userid;
-				$aa->terminid = $aid;
-				$aa->save();
+			if(isset($_POST['appointments'])){
+				foreach($_POST['appointments'] as $aid){ // these are the appointments, the user has checked
+					$aa = new AppointmentArrangement;
+					$aa->eventid = $id;
+					$aa->userid = $userid;
+					$aa->terminid = $aid;
+					$aa->save();
+				}
 			}
 
+			// The user is now signed up officially. 
 			UserEvent::model()->deleteAll('eventid=:eventid AND userid=:userid', array(':eventid'=>$id, ':userid'=>$userid));
 			$ue = new UserEvent;
 			$ue->userid = $userid;
@@ -128,9 +133,11 @@ class EventController extends Controller
 			$ue->signedup = 1;
 			$ue->save();
 
+			// We check if every participant has signed up already.
 			if(Event::calcProgress($id) >= 100){
 				NotificationUser::createNotificationForParticipants(Notification::EVENT_INVITATION, $id, $event->hostid);
 			}
+
 			$this->redirect(array('view', 'id'=>$id));
 		}
 
