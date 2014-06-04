@@ -165,12 +165,16 @@ class EventController extends Controller
 			$username = $_POST['User']['username'];
 			// Username is unique
 			$user = User::model()->findByAttributes(array('username'=>$username));
-			// First check if there is already an invitation
-			if(!UserEvent::createInvitation($user->id, $id)){
-				// var_dump($user);
-				$usermodel->addError('original_asset_number', 'The user can not be invited twice');
+			if(isset($user)){
+				// First check if there is already an invitation
+				if(!UserEvent::createInvitation($user->id, $id)){
+					// var_dump($user);
+					$usermodel->addError('original_asset_number', 'The user can not be invited twice');
+				} else {
+					NotificationUser::createNotificationForUser(Notification::EVENT_INVITATION, $id, $user->id);
+				}
 			} else {
-				NotificationUser::createNotificationForUser(Notification::EVENT_INVITATION, $id, $user->id);
+				$usermodel->addError('original_asset_number', 'The user does not exist!');
 			}
 		}
 		
