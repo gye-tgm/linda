@@ -18,21 +18,23 @@ require_once('_options.php');
     'dataProvider'=>$dataProvider,
     'template'=>"{items}",
     'columns'=>array(
-		array('name'=>'id','header'=>'ID'),
-        array('name'=>'name','header'=>'Name'),
+					
+		array(
+            'class'=>'CLinkColumn',
+            'labelExpression'=>'$data->name',
+			'urlExpression'=>'Yii::app()->createUrl("event/view", array("id"=>$data->id))',
+            'header'=>'Name',
+        ),
 		array('name'=>'location','header'=>'Location'),
 		array('name'=>'description','header'=>'Description'),
 		array('name'=>'hostid','header'=>'HostId'),
 		array(
-				'class'=>'CButtonColumn',
-				'template' => '{delete}',
-				),
-    ),
-));
-?>
+            'class'=>'CLinkColumn',
+            'label'=>'accept',
+			'urlExpression'=>'Yii::app()->createUrl("event/accept", array("id"=>$data->id))',
+            'header'=>'Accept',
+        ),
+		),			
+	));
 
-<?php /*$this->widget('bootstrap.widgets.TbListView', array(
-			'dataProvider'=>$dataProvider,
-			'itemView'=>'_invited',
-			)); */
 ?>
