@@ -31,7 +31,7 @@ class EventController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index', 'create','update', 'delete', 'organized', 'invited', 'invite', 'accept', 'fix'),
+				'actions'=>array('index', 'create','update', 'delete', 'organized', 'invited', 'invite', 'accept', 'fix', 'deleteinv'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -155,14 +155,31 @@ class EventController extends Controller
 
 
 	/**
+	 * Deletes an invitation and redirectes to the page before.
+	 */
+	public function actionDeleteinv($uid, $eid){
+		$ue = UserEvent::model()->findByPk(array("eventid"=>$eid, "userid"=>$uid));
+		if(isset($ue)){
+			if($ue->signedup){	
+				
+			} else {
+				$ue->delete();
+			}
+		} else {
+			
+		}
+		$this->redirect(isset(Yii::app()->user->returnUrl) ? Yii::app()->user->returnUrl : array('admin'));
+	}
+
+	/**
 	 * Shows a form for the user invitations.
 	 * @param integer $id the id of the event.
 	 */
 	public function actionInvite($id)
 	{
+		Yii::app()->user->returnUrl=array('/event/invite&id='.$id);
 		// todo: check access rights
 		$usermodel = new User;
-		
 		if(isset($_POST['User']))
 		{
 			$username = $_POST['User']['username'];
