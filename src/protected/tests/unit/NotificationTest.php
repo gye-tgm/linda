@@ -1,4 +1,5 @@
-class NotificationTest extends CTestCase
+<?php
+class NotificationTest extends CDbTestCase
 {
 	public function testApprove()
 	{
@@ -29,6 +30,8 @@ class NotificationTest extends CTestCase
 		$this->assertEquals("Every participant has made some proposals, you can fix the date for event1 now", $e);
 		$this->assertEquals("The organizer has made fixed arrangemnts for event1", $f);
 
+		
 	}
 
 }
+?>
