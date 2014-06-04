@@ -66,7 +66,8 @@ $('#btn-add-user').click(function(){
 			'type'=>'primary',
 			'label'=>$model->isNewRecord ? 'Create' : 'Save',
 		));
-		
+
+/*
 		if(!$model->isNewRecord){
 			$this->widget('bootstrap.widgets.TbButton', array(
 						'buttonType'=>'link',
@@ -82,7 +83,7 @@ $('#btn-add-user').click(function(){
 						));
 		}
 
-
+*/
 
 		?>
 	</div>

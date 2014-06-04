@@ -95,6 +95,21 @@ class NotificationUser extends CActiveRecord
 		return parent::model($className);
 	}
 
+
+	/**
+	 * Creates a notification for the invited users.
+	 * @param integer $type the type of the notification
+	 * @param integer $eventid the id of event of which the participants should be invited.
+	 */
+	public static function createNotificationForParticipants($type, $eventid){
+		$event = Event::model()->findByPk($eventid);
+		$userids = array();
+		foreach($event->users as $user){
+			$userids[] = $user->id;
+		}
+		self::createNotificationForUsers($type, $eventid, $userids);
+	}
+
 	/**
 	 * Creates a notification for a list of users.
 	 * @return 
