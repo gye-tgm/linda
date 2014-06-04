@@ -50,26 +50,6 @@ Invite users
 </div>
 
 
-<?php 
-/*	
-		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
-		'name'=>'publishDate',
-// additional javascript options for the date picker plugin
-'options'=>array(
-'showAnim'=>'fold',
-),
-'htmlOptions'=>array(
-'style'=>'height:20px;'
-),
-));
-
- */
-?>
-
-<!--  No need for host id, it is the current users id.	
-<?php echo $form->textFieldRow($model,'hostid',array('class'=>'span5')); ?> 
--->
-
 <div class="form-actions">
 <?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
