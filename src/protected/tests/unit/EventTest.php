@@ -11,7 +11,7 @@ class EventTest extends CDbTestCase
         $a = $event->calcProgress($event->id);
 
         // Assert
-        $this->assertEquals(50, $a);
+        $this->assertEquals(0, $a);
         
     }
 }

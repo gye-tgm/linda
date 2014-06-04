@@ -18,8 +18,8 @@ USE lindatest;
 GRANT ALL PRIVILEGES ON lindatest.*  TO 'lindatest'@'%' IDENTIFIED BY 'passwd';
 
 source /vagrant/data/create.sql
-source /vagrant/data/insert.sql
-source /vagrant/data/pinsert.sql
+-- source /vagrant/data/insert.sql
+-- source /vagrant/data/pinsert.sql
 source /home/vagrant/opt/yii/framework/web/auth/schema-mysql.sql
 
 

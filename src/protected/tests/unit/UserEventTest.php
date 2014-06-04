@@ -1,14 +1,37 @@
 <?php
-class UserEventTest extends CDbTestCase
-{
-
+class UserEventTest extends CDbTestCase{
+	
+	public $fixtures=array(
+		'event' => 'Event',
+		'user' => 'User'
+	);
+	
+	public $usrevent;
+	public $usr;
+	public $eve;
+	
+	public function setUp(){
+		parent::setUp();
+		$this->usr = new User($this->user['user1']);
+		$this->eve = new Event($this->event['event1']);
+	}
+	
+	public function tearDown(){
+		parent::tearDown();
+		$this->usrevent->delete();
+	}
+	
     public function testCreateInvitation()
     {
-        // Arrange
-        $invite = UserEvent()::model;
-
-        // Act
-        $this->assertTrue($invite->createInvitation(1,2,true));
+    	$this->usrevent = new UserEvent();
+    	$this->usrevent->userid=1;
+    	$this->usrevent->eventid=1;
+    	$this->usrevent->signedup=0;
+    	
+    	//createInvitation creates a new UserEvent Object that cant be deleted,
+    	//because of that we cant repeat that test without an extra sql execution
+        $this->assertTrue($this->usrevent->createInvitation(3,3));
+        $this->usrevent->save();
     }
 }
 ?>

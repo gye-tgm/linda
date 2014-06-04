@@ -1,13 +1,6 @@
 <?php
 class NotificationTest extends CDbTestCase
 {
-	public function testApprove()
-	{
-		// insert a comment in pending status
-		$comment=new Comment;
-		$comment->text = "Comment 1";
-		$comment->time = date('Y-m-d H:i:s'); 
-	}
 	public function testTranslate()
 	{
 		// Arrange
