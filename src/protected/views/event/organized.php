@@ -25,7 +25,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 				'class'=>'application.components.BootProgressColumn',
 				'animated' => false,
 				'striped' => false,
-				'value' => 'Event::calcProgress($data->id)', // TODO: acceptedUsers / invitedUsers
+				'value' => 'Event::calcProgress($data->id)',
 			),
 			array(
 				'class'=>'bootstrap.widgets.TbButtonColumn',

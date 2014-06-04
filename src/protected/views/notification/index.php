@@ -19,13 +19,16 @@ require_once('_options.php');
 		// name, da ruft man die korrespondierende Variable auf
 		// value, da $data ist das Objekt in der Zeile
         array('value'=>'Notification::translate($data->eventid, $data->type)', 'header'=>'Message'),
-        array('name'=>'time', 'header'=>'Time'),
-		array(
-			'class'=>'CButtonColumn',
-			'template' => '{delete}',
-		),
-    ),
-)); ?>
+				array('name'=>'time', 'header'=>'Time'),
+				array(
+					'class'=>'CLinkColumn',
+					'label'=>'Delete',
+					'urlExpression'=>'Yii::app()->createUrl("notification/deletenot", array("uid"=>'.Yii::app()->user->id.',"eid"=>$data->id))',
+					'header'=>'Delete',
+					),
+			),
+    )
+); ?>
 
 <!--<?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

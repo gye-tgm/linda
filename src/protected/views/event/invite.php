@@ -16,41 +16,34 @@ require_once('_options.php');
 
 <?php
 $this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider'=>$dataProvider,
-		'type'=>'striped bordered condensed',
-		'columns'=>array(
-			array('name'=>'username', 'header'=>'Name'),
-			array('value'=>'"accepted"', 'header'=>'Appointment 1'),
-			/*array(
-				'asExpression'=>function($data, $row){
-					return array(
-					'url' => CHtml::createUrl('accept', array('id'=>$data->id)));
-				}
-			), */
-		)));
+			'dataProvider'=>$dataProvider,
+			'type'=>'striped bordered condensed',
+			'columns'=>array(
+				array('name'=>'username', 'header'=>'Name'),
+				array(
+					'class'=>'CLinkColumn',
+					'label'=>'Delete',
+					'urlExpression'=>'Yii::app()->createUrl("event/deleteinv", array("uid"=>$data->id, "eid"=>'.$model->id.'))',
+					'header'=>'Delete',
+					),
+				),
+			)
+		);
 ?>
 <?php
 $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-
 			'id'=>'user-form',
-
 			'enableAjaxValidation'=>false,
-
 			));
 ?>
 
 <?php echo $form->errorSummary($usermodel); ?>
 <?php echo $form->textFieldRow($usermodel,'username',array('class'=>'span5','maxlength'=>255)); ?>
-
 </br>
 <?php 	$this->widget('bootstrap.widgets.TbButton', array(
-
 				'buttonType'=>'submit',
-
 				'type'=>'Invite',
-
 				'label'=>'Invite user'
-
 				)); ?>
 
 <?php $this->endWidget(); ?>
