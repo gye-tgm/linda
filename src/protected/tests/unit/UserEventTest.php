@@ -9,9 +9,11 @@ class UserEventTest extends CDbTestCase{
 	public $usrevent;
 	public $usr;
 	public $eve;
+	public $db;
 	
 	public function setUp(){
 		parent::setUp();
+		$this->db = Yii::app()->db;
 		$this->usr = new User($this->user['user1']);
 		$this->eve = new Event($this->event['event1']);
 	}
@@ -19,6 +21,7 @@ class UserEventTest extends CDbTestCase{
 	public function tearDown(){
 		parent::tearDown();
 		$this->usrevent->delete();
+		$this->db->createCommand('delete from User_Event where userid=3')->query();
 	}
 	
     public function testCreateInvitation()
