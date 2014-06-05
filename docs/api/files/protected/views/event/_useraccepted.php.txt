@@ -1,0 +1,32 @@
+<?php
+/* @var model Event */
+
+$termin = array();
+
+foreach($model->users as $user){
+	$row['id'] = $user->username;
+	foreach($model->appointments as $app){
+		$stat = AppointmentArrangement::model()->count('userid=:userid and terminid=:terminid',
+				array('userid'=>$user->id,
+							'terminid'=>$app->id,
+							));
+		$row[strval($app->id)] = ($stat ? 'Yes':'No');
+	}
+	$termin[] = $row; 
+}
+
+	// var_dump($termin);
+$gridDataProvider = new CArrayDataProvider($termin);
+$columns[] = 	array('name'=>'id', 'header'=>'User');
+foreach($model->appointments as $app){
+	$columns[] = array('name'=>$app->id, 'header'=>$app->time);
+}
+
+$this->widget('bootstrap.widgets.TbGridView', array(
+			'type'=>'striped bordered condensed',
+			'dataProvider'=>$gridDataProvider,
+			'template'=>"{items}",
+			'columns'=>$columns,
+			));
+?>
+

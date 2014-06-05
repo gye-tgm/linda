@@ -1,0 +1,37 @@
+
+
+<?php
+/* @var model */
+?>
+
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+	'id'=>'event-form',
+	'enableAjaxValidation'=>false,
+));
+?>
+	<?php
+		Yii::app()->user->setFlash('info', 'You can also <strong>tick nothing</strong> to <strong>decline</strong> this invitation.');
+	?>
+	<?php $this->widget('bootstrap.widgets.TbAlert'); ?>
+	<?php echo $form->errorSummary($model); ?>
+
+
+	<?php 
+		foreach($model->appointments as $a){
+				// todo: value should be the same as before
+				echo '<input value="'.$a->id.'" type="checkbox" name="appointments[]">';
+				echo $a->time;
+				echo "</br>";
+		}
+	?>
+
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'success',
+			'label'=>'Apply'
+		));
+		?>	
+	</div>
+<?php $this->endWidget(); ?>
+

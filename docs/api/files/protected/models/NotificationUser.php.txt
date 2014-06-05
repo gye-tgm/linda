@@ -1,0 +1,134 @@
+<?php
+
+/**
+ * This is the model class for table "Notification_User".
+ *
+ * The followings are the available columns in table 'Notification_User':
+ * @property integer $notificationid
+ * @property integer $userid
+ * @property integer $isread
+ */
+class NotificationUser extends CActiveRecord
+{
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return 'Notification_User';
+	}
+
+	/**
+	 * @return array validation rules for model attributes.
+	 */
+	public function rules()
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('notificationid, userid', 'required'),
+			array('notificationid, userid, isread', 'numerical', 'integerOnly'=>true),
+			// The following rule is used by search().
+			// @todo Please remove those attributes that should not be searched.
+			array('notificationid, userid, isread', 'safe', 'on'=>'search'),
+		);
+	}
+
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
+		return array(
+		);
+	}
+
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'notificationid' => 'Notificationid',
+			'userid' => 'Userid',
+			'isread' => 'Isread',
+		);
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('notificationid',$this->notificationid);
+		$criteria->compare('userid',$this->userid);
+		$criteria->compare('isread',$this->isread);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return NotificationUser the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
+
+	/**
+	 * Creates a notification for the invited users.
+	 * @param integer $type the type of the notification
+	 * @param integer $eventid the id of event of which the participants should be invited.
+	 */
+	public static function createNotificationForParticipants($type, $eventid){
+		$event = Event::model()->findByPk($eventid);
+		$userids = array();
+		foreach($event->users as $user){
+			$userids[] = $user->id;
+		}
+		self::createNotificationForUsers($type, $eventid, $userids);
+	}
+
+	/**
+	 * Creates a notification for a list of users.
+	 * @return 
+	 */
+	public static function createNotificationForUsers($type, $eventid, array $userids){
+		$notification = Notification::createNotification($type, $eventid);
+		foreach($userids as $userid){
+			$nu = new NotificationUser;
+			$nu->notificationid = $notification->id;
+			$nu->userid = $userid;
+			$nu->save();
+		}
+	}
+
+	/**
+	 * Creates a notification for a single user.
+	 */
+	public static function createNotificationForUser($type, $eventid, $user){
+		self::createNotificationForUsers($type, $eventid, array($user));
+	}
+}
+

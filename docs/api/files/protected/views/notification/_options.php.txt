@@ -1,0 +1,13 @@
+<?php
+
+$userid=Yii::app()->user->getId();
+$user=User::model()->findByPk($userid);
+
+if(isset($user) && $user->username==='admin'){
+	array_push($this->menu, 
+		array('label'=>'Admin Options'),
+		array('label'=>'Manage Notifications','url'=>array('admin'),'icon'=>'pencil')
+	);
+}
+?>
+

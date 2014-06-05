@@ -1,0 +1,21 @@
+<?php
+/* @var $this AppointmentArrangementController */
+/* @var $model AppointmentArrangement */
+
+$this->breadcrumbs=array(
+	'Appointment Arrangements'=>array('index'),
+	$model->id=>array('view','id'=>$model->id),
+	'Update',
+);
+
+$this->menu=array(
+	array('label'=>'List AppointmentArrangement', 'url'=>array('index'),'icon'=>'book'),
+	array('label'=>'Create AppointmentArrangement', 'url'=>array('create'),'icon'=>'plus'),
+	array('label'=>'View AppointmentArrangement', 'url'=>array('view', 'id'=>$model->id),'icon'=>'icon-eye-open'),
+	array('label'=>'Manage AppointmentArrangement', 'url'=>array('admin'),'icon'=>'pencil'),
+);
+?>
+
+<h1>Update AppointmentArrangement <?php echo $model->id; ?></h1>
+
+<?php $this->renderPartial('_form', array('model'=>$model)); ?>
