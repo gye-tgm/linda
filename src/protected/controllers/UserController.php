@@ -62,19 +62,22 @@ class UserController extends Controller
 	public function actionCreate()
 	{
 		$model=new User;
-
+		$exists=null;
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+		// $this->performAjaxValidation($model); 
 		if(isset($_POST['User']))
 		{
-			$model->attributes=$_POST['User'];
-			if($model->save())
-				$this->redirect(array('/event/index'));
+			if(!User::model()->exists('username=:username',array('username'=>$_POST['User']['username']))){
+				$exists=false;
+				$model->attributes=$_POST['User'];
+				if($model->save())
+					$this->redirect(array('/event/index'));
+			}else{$exists=true;}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'exists'=>$exists,
 		));
 	}
 

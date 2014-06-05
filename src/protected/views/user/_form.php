@@ -5,6 +5,11 @@
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
+<?php 
+	if($exists)
+	echo '<p class="help-block"><span class="required">*</span> Username already exists!</p>';
+?>
+
 	<?php echo $form->errorSummary($model); ?>
 
 	<?php echo $form->textFieldRow($model,'username',array('class'=>'span5','maxlength'=>255)); ?>
