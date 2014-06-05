@@ -3,10 +3,6 @@ $this->breadcrumbs=array(
 	'Users',
 );
 
-$this->menu=array(
-	array('label'=>'Create User','url'=>array('create'),'icon'=>'plus'),
-	array('label'=>'Manage User','url'=>array('admin'),'icon'=>'pencil'),
-);
 ?>
 
 <h1>Users</h1>
