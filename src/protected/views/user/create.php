@@ -4,10 +4,9 @@ $this->breadcrumbs=array(
 	'Create',
 );
 
-$this->menu=array(
-	array('label'=>'List User','url'=>array('index'),'icon'=>'book'),
-	array('label'=>'Manage User','url'=>array('admin'),'icon'=>'pencil'),
-);
+
+require '_options.php';
+
 ?>
 
 <h1>Create User</h1>
