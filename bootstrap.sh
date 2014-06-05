@@ -51,6 +51,11 @@ cp /vagrant/composer.json .
 php composer.phar install
 export PATH=$PATH:$HOME/vendor/bin
 
+
+# Get PHPDOC
+pear channel-discover pear.phpdoc.org
+pear install phpdoc/phpDocumentor
+
 # MySQL Database setup
 mysql -u root < /vagrant/data/all.sql 
 
