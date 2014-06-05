@@ -32,7 +32,7 @@ class NotificationController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'delete'),
+				'actions'=>array('create','update', 'delete', 'deletenot'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -115,6 +115,23 @@ class NotificationController extends Controller
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+	}
+	
+	public function actionDeletenot($id)
+	{
+		$uid = Yii::app()->user->getid();
+		$notiuser = NotificationUser::model()->findByPk(array("notificationid"=>$id, "userid"=>$uid));
+		
+		if(isset($notiuser)){
+			if($notiuser->delete())
+				$this->redirect(array('index'));
+			//$notiuser->isread=1;
+			//if($notiuser->save())
+			//	$this->redirect(array('index'));
+		}
+		
+
+		//if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 	}
 
 	/**
