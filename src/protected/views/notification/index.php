@@ -10,7 +10,6 @@ require_once('_options.php');
 ?>
 
 <h1>Notifications</h1>
-
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
     'type'=>'striped bordered condensed',
     'dataProvider'=>$dataProvider,
@@ -23,7 +22,7 @@ require_once('_options.php');
 				array(
 					'class'=>'CLinkColumn',
 					'label'=>'Delete',
-					'urlExpression'=>'Yii::app()->createUrl("notification/deletenot", array("uid"=>'.Yii::app()->user->id.',"eid"=>$data->id))',
+					'urlExpression'=>'Yii::app()->createUrl("notification/deletenot", array("id"=>$data->id))',
 					'header'=>'Delete',
 					),
 			),
